@@ -7,19 +7,48 @@
 }
 .travel-container{
     @include container();
+    
 
     .travel-filter{
         @include container();
         margin: 20px 0;
         text-align: center;
+       
+        .travel-keyword-search{
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            
+            input{
+                padding: 10px;
+                border: none;
+                box-shadow: 0px 0px 10px rgb(210, 210, 210);
+            }
+            button{
+                padding: 10px;
+                border: none;
+                font-size: 20px;
+                background-color: red;
+                color: white;
+                box-shadow: 0px 0px 10px rgb(210, 210, 210);
+            }
+       
+        }
+        select{
+            padding: 10px;
+            font-size: 20px;
+            font-weight: 800;
+        }
     }
     .travel-item{
         display: flex;
+        align-items: center;
         margin: 0 auto;
-       padding: 10px 0;
+       padding: 10px 10px;
         input[type="checkbox"]{
             width: 20px;
             height: 20px;
+            margin: 0 3px;
         }
         .travel-item-page{
             width: 100%;
@@ -53,11 +82,12 @@
             .my-favorite{
                 display: flex;
             }
-            button{
-                @include button(100px,14px);
-            }
-        } 
-    }    
+           
+    }  
+    .addfavorite{
+        @include button(130px,14px);
+    }
+}   
 }
 .select-all{
     @include container();

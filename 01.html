@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>旅遊地點查詢</title>
 </head>
 
 <body>
@@ -18,14 +19,22 @@
         </div>
         <div class="travel-container">
             <div class="travel-filter">
+                <div class="travel-keyword-search">
+                    <input type="text" placeholder="請輸入關鍵字" v-model="travelSearch">
+                    <button @click="keyWordSearch"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+          
                 <select name="" id="" v-model="travelArea">
-                    <option value="">請選擇</option>
+                    <option value="">請選擇區域</option>
                     <option v-for="item in AreaName"  :value="item.AreaName">{{item.AreaName}}</option>
                 </select>
-              
+               
             </div>
          
             <div class="travel-item" v-for="(item,index) in travelData" :class="{bgColor:index%2===0}">
+                <span class="my-favorite"><input type="checkbox" v-model="myFavorite"
+                    :value="item"
+                        ></span> 
                 <div class="travel-item-page" >
                   <div class="travel-title">
                     <h4>{{item.district}}</h4>
@@ -34,12 +43,9 @@
                         <div class="travel-item-name">
                             <h5>{{item.name}}</h5></div>
                         <div class="travel-item-address"><p>{{item.address}}</p></div>
-                    <span class="my-favorite"><input type="checkbox" v-model="myFavorite"
-                    :value="item"
-                        >選取</span> 
-                    <button @click="addFavorite(item.id,item.lat,item.long)">加到我的最愛</button>
                 </div>
             </div>
+            <button class="addfavorite"  @click="addFavorite(item.id,item.lat,item.long)">加到我的最愛</button>
         </div>
         <div class="select-all">
             <button @click="addTotal">全部加入最愛</button>
@@ -58,7 +64,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/vue@next"></script>
 
-    <script src="01.js"></script>
+    <script src="./js/01.js"></script>
 
 </body>
 

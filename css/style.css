@@ -150,14 +150,39 @@ span {
   margin: 20px 0;
   text-align: center;
 }
+.travel-container .travel-filter .travel-keyword-search {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.travel-container .travel-filter .travel-keyword-search input {
+  padding: 10px;
+  border: none;
+  box-shadow: 0px 0px 10px rgb(210, 210, 210);
+}
+.travel-container .travel-filter .travel-keyword-search button {
+  padding: 10px;
+  border: none;
+  font-size: 20px;
+  background-color: red;
+  color: white;
+  box-shadow: 0px 0px 10px rgb(210, 210, 210);
+}
+.travel-container .travel-filter select {
+  padding: 10px;
+  font-size: 20px;
+  font-weight: 800;
+}
 .travel-container .travel-item {
   display: flex;
+  align-items: center;
   margin: 0 auto;
-  padding: 10px 0;
+  padding: 10px 10px;
 }
 .travel-container .travel-item input[type=checkbox] {
   width: 20px;
   height: 20px;
+  margin: 0 3px;
 }
 .travel-container .travel-item .travel-item-page {
   width: 100%;
@@ -186,8 +211,8 @@ span {
 .travel-container .travel-item .travel-item-page .my-favorite {
   display: flex;
 }
-.travel-container .travel-item .travel-item-page button {
-  width: 100px;
+.travel-container .travel-item .addfavorite {
+  width: 130px;
   padding: 5px;
   font-weight: 800;
   font-size: 14px;
@@ -195,7 +220,7 @@ span {
   background-color: blue;
   color: white;
 }
-.travel-container .travel-item .travel-item-page button:active {
+.travel-container .travel-item .addfavorite:active {
   transform: translateY(3px);
 }
 
@@ -356,6 +381,7 @@ span {
 }
 .myFavourite-list .favourite-container .favourite-item {
   display: flex;
+  align-items: center;
   margin: 0 auto;
   padding: 10px 0;
 }
@@ -390,7 +416,7 @@ span {
 .myFavourite-list .favourite-container .favourite-item .favourite-item-page .my-favourite {
   display: flex;
 }
-.myFavourite-list .favourite-container .favourite-item .favourite-item-page button {
+.myFavourite-list .favourite-container .favourite-item-btn button {
   width: 100px;
   padding: 5px;
   font-weight: 800;
@@ -398,16 +424,30 @@ span {
   border-radius: 20px;
   background-color: blue;
   color: white;
+  margin: 10px 0;
 }
-.myFavourite-list .favourite-container .favourite-item .favourite-item-page button:active {
+.myFavourite-list .favourite-container .favourite-item-btn button:active {
   transform: translateY(3px);
+}
+.myFavourite-list .favourite-container .favourite-item-btn .edit {
+  background-color: red;
 }
 .myFavourite-list .delete-all {
   width: 100%;
   max-width: 1200px;
   margin: auto;
-  margin: 30px 0;
-  text-align: center;
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.myFavourite-list .delete-all span {
+  font-size: 25px;
+  font-weight: 800;
+}
+.myFavourite-list .delete-all input[type=checkbox] {
+  width: 20px;
+  height: 20px;
 }
 .myFavourite-list .delete-all button {
   width: 150px;
@@ -421,7 +461,183 @@ span {
 .myFavourite-list .delete-all button:active {
   transform: translateY(3px);
 }
-.myFavourite-list .delete-all span {
-  font-size: 20px;
+
+.edit-light-box {
+  position: fixed;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+.edit-light-box .fix-list {
+  position: fixed;
+  top: 40%;
+  left: 5%;
+  width: 90%;
+  background-color: white;
+  line-height: 2;
+  text-align: center;
+  font-weight: 800;
+  border-radius: 20px;
+}
+.edit-light-box .fix-list .fix-btn {
+  margin: 10px 0;
+}
+.edit-light-box .fix-list .fix-btn button {
   margin: 0 10px;
+  width: 100px;
+  padding: 5px;
+  font-weight: 800;
+  font-size: 16px;
+  border-radius: 20px;
+  background-color: blue;
+  color: white;
+}
+.edit-light-box .fix-list .fix-btn button:active {
+  transform: translateY(3px);
+}
+
+@media screen and (min-width: 1024px) {
+  .myFavourite-list {
+    display: flex;
+    margin-top: 150px;
+    align-items: center;
+  }
+  .myFavourite-list .map-container {
+    width: 40%;
+  }
+  .myFavourite-list .map-container #map {
+    width: 60vh;
+    height: 60vh;
+    margin: auto;
+  }
+  .myFavourite-list .favourite-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    width: 50%;
+  }
+  .myFavourite-list .favourite-container .favourite-head {
+    text-align: center;
+    font-weight: 800;
+    margin: 30px 0;
+  }
+  .myFavourite-list .favourite-container .favourite-item {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    padding: 10px 10px;
+  }
+  .myFavourite-list .favourite-container .favourite-item input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+  }
+  .myFavourite-list .favourite-container .favourite-item .favourite-item-page {
+    width: 100%;
+    max-width: 300px;
+    line-height: 1.5;
+    margin: auto;
+    text-align: left;
+  }
+  .myFavourite-list .favourite-container .favourite-item .favourite-item-page .favourite-title {
+    width: 130px;
+    background-color: red;
+    padding: 0 5px;
+    text-align: center;
+    border-radius: 10px;
+  }
+  .myFavourite-list .favourite-container .favourite-item .favourite-item-page .favourite-title h4 {
+    color: white;
+    font-weight: 800;
+  }
+  .myFavourite-list .favourite-container .favourite-item .favourite-item-page .favourite-body {
+    line-height: 1.5;
+  }
+  .myFavourite-list .favourite-container .favourite-item .favourite-item-page .favourite-body .favourite-item-name h5 {
+    font-weight: 800;
+  }
+  .myFavourite-list .favourite-container .favourite-item .favourite-item-page .my-favourite {
+    display: flex;
+  }
+  .myFavourite-list .favourite-container .favourite-item-btn button {
+    width: 100px;
+    padding: 5px;
+    font-weight: 800;
+    font-size: 14px;
+    border-radius: 20px;
+    background-color: blue;
+    color: white;
+    margin: 10px 0;
+  }
+  .myFavourite-list .favourite-container .favourite-item-btn button:active {
+    transform: translateY(3px);
+  }
+  .myFavourite-list .favourite-container .favourite-item-btn .edit {
+    background-color: red;
+  }
+  .myFavourite-list .delete-all {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    margin: 30px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .myFavourite-list .delete-all button {
+    width: 150px;
+    padding: 5px;
+    font-weight: 800;
+    font-size: 20px;
+    border-radius: 20px;
+    background-color: blue;
+    color: white;
+  }
+  .myFavourite-list .delete-all button:active {
+    transform: translateY(3px);
+  }
+  .myFavourite-list .delete-all span {
+    font-size: 27px;
+    margin: 0 10px;
+  }
+  .edit-light-box {
+    position: fixed;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+  .edit-light-box .fix-list {
+    position: fixed;
+    top: 40%;
+    left: 5%;
+    width: 90%;
+    background-color: white;
+    line-height: 2;
+    text-align: center;
+    font-weight: 800;
+    border-radius: 20px;
+  }
+  .edit-light-box .fix-list .fix-btn {
+    margin: 10px 0;
+  }
+  .edit-light-box .fix-list .fix-btn button {
+    margin: 0 10px;
+    width: 100px;
+    padding: 5px;
+    font-weight: 800;
+    font-size: 16px;
+    border-radius: 20px;
+    background-color: blue;
+    color: white;
+  }
+  .edit-light-box .fix-list .fix-btn button:active {
+    transform: translateY(3px);
+  }
 }/*# sourceMappingURL=style.css.map */

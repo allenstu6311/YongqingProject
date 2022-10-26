@@ -1,5 +1,5 @@
 .myFavourite-list{
-    
+
     .map-container{
         #map{
             height: 50vh;
@@ -12,9 +12,10 @@
     }
     .favourite-container{
         @include container();
-    
+
         .favourite-item{
             display: flex;
+            align-items: center;
             margin: 0 auto;
            padding: 10px 0;
             input[type="checkbox"]{
@@ -51,25 +52,194 @@
                 .my-favourite{
                     display: flex;
                 }
-                button{
-                    @include button(100px,14px);
-                }
+                
             } 
-        }    
+        }
+        .favourite-item-btn{
+            button{
+                @include button(100px,14px);
+                margin: 10px 0;
+            }
+            .edit{
+                background-color: red
+            }
+     
+        }   
     }
     .delete-all{
         @include container();
-        margin: 30px 0;
-        text-align: center;
+        margin-top: 40px;
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        span{
+            font-size: 25px;
+            font-weight: 800
+        }
+        input[type="checkbox"]{
+            width: 20px;
+            height: 20px;
+        }
         
         button{
             @include button();
         }
-        span{
-            font-size: 20px;
-            margin: 0 10px;
+        
+    }
+}
+.edit-light-box{
+    position: fixed;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba($color: #000000, $alpha: .5);
+    z-index: 1000;
+    .fix-list{
+        position: fixed;
+        top: 40%;
+        left: 5%;
+        width: 90%;
+        background-color: white;
+        line-height:2 ;
+        text-align: center;
+        font-weight: 800;
+        border-radius: 20px;
+
+        .fix-btn{
+            margin: 10px 0;
+            button{
+                margin: 0 10px;
+                @include button(100px,16px)
+            }
         }
+    }
+}
+// ============================1024
+@media screen and (min-width:1024px) {
+    .myFavourite-list{
+        display: flex;
+        margin-top: 150px;
+        align-items: center;
+        .map-container{
+            width: 40%;
+         
+            #map{
+                width: 60vh;
+                height: 60vh;
+                margin: auto
+            }
+        }
+      
+        .favourite-container{
+            @include container();
+            width: 50%;
+            .favourite-head{
+                text-align: center;
+                font-weight: 800;
+                margin: 30px 0;
+            }
+        
+            .favourite-item{
+                display: flex;
+                align-items: center;
+                margin: 0 auto;
+               padding: 10px 10px;
+                input[type="checkbox"]{
+                    width: 20px;
+                    height: 20px;
+                }
+                .favourite-item-page{
+                    width: 100%;
+                    max-width: 300px;
+                    line-height: 1.5;
+                    margin: auto;
+                    text-align: left;
+                   
+                    .favourite-title{
+                        width: 130px;
+                        background-color: red;
+                        padding: 0 5px;
+                        text-align: center;
+                        border-radius: 10px;
+                        h4{
+                            color: white;
+                            font-weight: 800;  
+                        }
+                    }
+                    .favourite-body{
+                        line-height: 1.5;
+                        
+                    .favourite-item-name{
+                        h5{
+                            font-weight: 800;
+                        }
+                    }
+                    .favourite-item-address{}
+                    }
+                    .my-favourite{
+                        display: flex;
+                    }
+                    
+                } 
+            }
+            .favourite-item-btn{
+                button{
+                    @include button(100px,14px);
+                    margin: 10px 0;
+                }
+                .edit{
+                    background-color: red
+                }
+         
+            }   
+        }
+        .delete-all{
+            @include container();
+            margin: 30px 0;
+            display:flex;
+            justify-content: space-between;
+            align-items: center;
+            
+            button{
+                @include button();
+            }
+            span{
+                font-size: 27px;
+                margin: 0 10px;
+            }
+        
+        }
+    }
+    .edit-light-box{
+        position: fixed;
+        margin: auto;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: rgba($color: #000000, $alpha: .5);
+        z-index: 1000;
+        .fix-list{
+            position: fixed;
+            top: 40%;
+            left: 5%;
+            width: 90%;
+            background-color: white;
+            line-height:2 ;
+            text-align: center;
+            font-weight: 800;
+            border-radius: 20px;
     
+            .fix-btn{
+                margin: 10px 0;
+                button{
+                    margin: 0 10px;
+                    @include button(100px,16px)
+                }
+            }
+        }
     }
 }
 

@@ -4,6 +4,7 @@ Vue.createApp({
             travelData: [],
             travelInfo: [],
             travelArea: '',
+            travelSearch:'',
             AreaName: [],
             idNumMin: 0,
             idNumMax: 10,
@@ -21,8 +22,6 @@ Vue.createApp({
                 .then((res) => {
                     this.travelData = res.data
                     this.travelInfo = res.data
-
-                    // console.log(this.travelData)
 
                     this.travelData = this.travelData.slice(this.idNumMin, this.idNumMax)
 
@@ -63,6 +62,7 @@ Vue.createApp({
                     district: this.travelData[index].district,
                     name: this.travelData[index].name,
                     address: this.travelData[index].address,
+                    tel:this.travelData[index].tel,
                     lat: this.travelData[index].lat,
                     long: this.travelData[index].long
 
@@ -84,6 +84,7 @@ Vue.createApp({
                         district: this.myFavorite[i].district,
                         name: this.myFavorite[i].name,
                         address: this.myFavorite[i].address,
+                        tel:this.travelData[i].tel,
                         lat: this.myFavorite[i].lat,
                         long: this.myFavorite[i].long
 
@@ -95,6 +96,11 @@ Vue.createApp({
             } else {
                 alert("已加入我的最愛")
             }
+        },
+        keyWordSearch(){
+           this.travelData = this.travelInfo.filter(item=>item.name==this.travelSearch ||
+            item.district==this.travelSearch ||
+            item.name[0]==this.travelSearch[0])
         },
         setLocalStorage() {
             localStorage.setItem("myFavorite", JSON.stringify(this.favorite))
@@ -109,6 +115,13 @@ Vue.createApp({
         travelArea() {
             this.travelData = this.travelInfo.filter(item => item.district === this.travelArea)
         },
+        travelSearch:{
+            handler(newVal){
+                if(newVal==""){
+                    this.travelData=this.travelInfo.slice(this.idNumMin, this.idNumMax)
+                }
+            }
+        }
     },
     created() {
         this.getTravelinformation()
