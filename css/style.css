@@ -132,10 +132,43 @@ span {
 
 .travel-place {
   margin: 20px 0;
-  text-align: center;
+  border-bottom: 1px solid rgb(222, 222, 222);
+  padding: 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .travel-place h2 {
   font-weight: 800;
+  font-size: 25px;
+}
+.travel-place .chose-page .chose-control {
+  position: relative;
+  width: 30px;
+  height: 4px;
+  margin: 7px 0;
+  background-color: red;
+  z-index: 10;
+}
+.travel-place .chose-list {
+  width: 30vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  right: 0px;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 5;
+}
+.travel-place .chose-list a {
+  text-decoration: none;
+  display: block;
+  font-size: 25px;
+  font-weight: 800;
+  margin: 10px 0;
+  color: white;
 }
 
 .travel-container {
@@ -148,7 +181,9 @@ span {
   max-width: 1200px;
   margin: auto;
   margin: 20px 0;
-  text-align: center;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
 }
 .travel-container .travel-filter .travel-keyword-search {
   display: flex;
@@ -364,6 +399,49 @@ span {
 .bgColor {
   background-color: antiquewhite;
   padding: 10px;
+}
+
+.turnAngle_1 {
+  position: absolute;
+  transform: rotate(45deg);
+  transition: 0.5s;
+  z-index: 10;
+}
+
+.turnAngle_2 {
+  position: absolute;
+  top: -10px;
+  right: 0px;
+  transform: rotate(-45deg);
+  transition: 0.5s;
+  z-index: 10;
+}
+
+.called-enter-active,
+.called-leave-active {
+  font-size: 0;
+  transition: 0.5s;
+}
+
+.called-enter-from {
+  width: 0 !important;
+  height: 0 !important;
+  border-radius: 50%;
+  font-size: 0;
+}
+
+.called-enter-to {
+  width: 30vw;
+  height: 100vh;
+  right: 100px;
+  top: 0;
+}
+
+.called-leave-to {
+  width: 0 !important;
+  height: 0 !important;
+  border-radius: 50%;
+  font-size: 0;
 }
 
 .myFavourite-list .map-container #map {

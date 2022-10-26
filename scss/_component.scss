@@ -39,11 +39,14 @@ $fontColor:(
     width: 100%;
     max-width: 1200px;
     margin: auto;
+  
 }
 
-@mixin url {
+@mixin url() {
     text-decoration: none;
     display: block;
+    font-size: 25px;
+    font-weight: 800;
 
 }
 @mixin button($width:150px, $size:20px) {

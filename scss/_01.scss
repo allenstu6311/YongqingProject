@@ -1,30 +1,70 @@
-.travel-place{
+.travel-place {
     margin: 20px 0;
-    text-align: center;
-    h2{
-        font-weight: 800
+    border-bottom: 1px solid rgb(222, 222, 222);
+    padding: 20px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h2 {
+        font-weight: 800;
+        font-size: 25px
+    }
+
+    .chose-page {
+
+        .chose-control {
+            position: relative;
+            width: 30px;
+            height: 4px;
+            margin: 7px 0;
+            background-color: red;
+            z-index: 10;
+        }
+    }
+
+    .chose-list {
+        width: 30vw;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        right: 0px;
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        z-index: 5;
+
+        a {
+            @include url();
+            margin: 10px 0;
+            color: white;
+        }
     }
 }
-.travel-container{
-    @include container();
-    
 
-    .travel-filter{
+.travel-container {
+    @include container();
+
+    .travel-filter {
         @include container();
         margin: 20px 0;
-        text-align: center;
-       
-        .travel-keyword-search{
+        display: flex;
+        align-items: flex-end;
+        flex-direction: column;
+
+        .travel-keyword-search {
             display: flex;
             justify-content: center;
             margin-bottom: 20px;
-            
-            input{
+
+            input {
                 padding: 10px;
                 border: none;
                 box-shadow: 0px 0px 10px rgb(210, 210, 210);
             }
-            button{
+
+            button {
                 padding: 10px;
                 border: none;
                 font-size: 20px;
@@ -32,108 +72,126 @@
                 color: white;
                 box-shadow: 0px 0px 10px rgb(210, 210, 210);
             }
-       
+
         }
-        select{
+
+        select {
             padding: 10px;
             font-size: 20px;
             font-weight: 800;
         }
     }
-    .travel-item{
+
+    .travel-item {
         display: flex;
         align-items: center;
         margin: 0 auto;
-       padding: 10px 10px;
-        input[type="checkbox"]{
+        padding: 10px 10px;
+
+        input[type="checkbox"] {
             width: 20px;
             height: 20px;
             margin: 0 3px;
         }
-        .travel-item-page{
+
+        .travel-item-page {
             width: 100%;
             max-width: 300px;
             line-height: 1.5;
             margin: auto;
             text-align: left;
-          
-            .travel-title{
+
+            .travel-title {
                 width: 130px;
                 background-color: red;
                 padding: 0 5px;
                 text-align: center;
                 border-radius: 10px;
-                
-                h4{
+
+                h4 {
                     color: white;
-                    font-weight: 800;  
-                }
-                
-            }
-            .travel-body{
-                line-height: 1.5;
-            .travel-item-name{
-                h5{
                     font-weight: 800;
                 }
+
             }
-            .travel-item-address{}
+
+            .travel-body {
+                line-height: 1.5;
+
+                .travel-item-name {
+                    h5 {
+                        font-weight: 800;
+                    }
+                }
+
+                .travel-item-address {}
             }
-            .my-favorite{
+
+            .my-favorite {
                 display: flex;
             }
-           
-    }  
-    .addfavorite{
-        @include button(130px,14px);
+
+        }
+
+        .addfavorite {
+            @include button(130px, 14px);
+        }
     }
-}   
 }
-.select-all{
+
+.select-all {
     @include container();
     margin: 30px 0;
     text-align: center;
-    
-    button{
+
+    button {
         @include button();
     }
 
 }
-.turn-page{
+
+.turn-page {
     display: flex;
     justify-content: center;
-    .chose-page{
+
+    .chose-page {
         font-size: 20px;
         margin: 5px 10px;
     }
-    
+
 }
+
 // ====================================1024
 @media screen and (min-width:1024px) {
-    .travel-place{
+    .travel-place {
         margin: 20px 0;
         text-align: center;
-        h2{
+
+        h2 {
             font-weight: 800
         }
     }
-    .travel-container{
+
+    .travel-container {
         @include container();
-    
-        .travel-filter{
+
+        .travel-filter {
             @include container();
             margin: 20px 0;
             text-align: center;
         }
-        .travel-item{
+
+        .travel-item {
             display: flex;
             margin: 0 auto;
-           padding: 10px 0;
-            input[type="checkbox"]{
+            padding: 10px 0;
+
+            input[type="checkbox"] {
                 width: 20px;
                 height: 20px;
             }
-            .travel-item-page{
+
+            .travel-item-page {
                 display: flex;
                 align-items: center;
                 width: 100%;
@@ -141,66 +199,129 @@
                 line-height: 1.5;
                 margin: auto;
                 text-align: center;
-              
-                .travel-title{
+
+                .travel-title {
                     margin-right: 10px;
                     width: 130px;
                     background-color: red;
                     padding: 0 5px;
                     text-align: center;
                     border-radius: 10px;
-                    
-                    h4{
+
+                    h4 {
                         color: white;
-                        font-weight: 800;  
+                        font-weight: 800;
                     }
-                    
+
                 }
-                .travel-body{
+
+                .travel-body {
                     display: flex;
-                    
+
                     line-height: 1.5;
-                .travel-item-name{
-                    margin-right: 10px;
+
+                    .travel-item-name {
+                        margin-right: 10px;
+                    }
+
+                    .travel-item-address {
+                        margin-right: 10px;
+                    }
                 }
-                .travel-item-address{
-                    margin-right: 10px;
-                }
-                }
-                .my-favorite{
+
+                .my-favorite {
                     display: block;
                     margin-right: 0;
                 }
-                button{
-                    @include button(100px,14px);
+
+                button {
+                    @include button(100px, 14px);
                 }
-            } 
-        }    
+            }
+        }
     }
-    .select-all{
+
+    .select-all {
         @include container();
         margin: 30px 0;
         text-align: center;
-        
-        button{
+
+        button {
             @include button();
         }
-    
+
     }
-    .turn-page{
+
+    .turn-page {
         display: flex;
         justify-content: center;
-        .chose-page{
+
+        .chose-page {
             font-size: 20px;
             margin: 5px 10px;
         }
-        
+
     }
 }
-.pageColor{
+
+.pageColor {
     color: red;
 }
-.bgColor{
+
+.bgColor {
     background-color: antiquewhite;
-    padding:10px;
+    padding: 10px;
+}
+
+.turnAngle_1 {
+    position: absolute;
+    transform: rotate(45deg);
+    transition: .5s;
+    z-index: 10;
+}
+
+.turnAngle_2 {
+    position: absolute;
+    top: -10px;
+    right: 0px;
+    transform: rotate(-45deg);
+    transition: .5s;
+    z-index: 10;
+}
+
+// ================================選單動畫
+.called-enter-active,
+.called-leave-active {
+    font-size: 0;
+    transition: .5s;
+
+}
+
+.called-enter-from {
+    width: 0 !important;
+    height: 0 !important;
+    border-radius: 50%;
+    font-size: 0;
+}
+
+.called-leave-from {
+
+    // width: 300vw;
+    // height: 100vh;
+
+}
+
+.called-enter-to {
+    width: 30vw;
+    height: 100vh;
+    right: 100px;
+    top: 0;
+}
+
+.called-leave-to {
+    width: 0 !important;
+    height: 0 !important;
+    border-radius: 50%;
+    font-size: 0;
+
 }

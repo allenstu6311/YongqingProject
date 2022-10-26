@@ -4,7 +4,7 @@ Vue.createApp({
             travelData: [],
             travelInfo: [],
             travelArea: '',
-            travelSearch:'',
+            travelSearch: '',
             AreaName: [],
             idNumMin: 0,
             idNumMax: 10,
@@ -14,6 +14,8 @@ Vue.createApp({
             extraPage_min: -3,
             extraPage_max: 8,
             favorite: [],
+            sameNumber: [],
+            showList:false,
         }
     },
     methods: {
@@ -62,7 +64,7 @@ Vue.createApp({
                     district: this.travelData[index].district,
                     name: this.travelData[index].name,
                     address: this.travelData[index].address,
-                    tel:this.travelData[index].tel,
+                    tel: this.travelData[index].tel,
                     lat: this.travelData[index].lat,
                     long: this.travelData[index].long
 
@@ -73,37 +75,46 @@ Vue.createApp({
             this.setLocalStorage();
         },
         addTotal() {
-            let sameTravel = this.favorite.find(v=>this.myFavorite.find(u=>v.id===u.id))
+            let sameTravel = this.favorite.find(v => this.myFavorite.find(u => v.id === u.id))
 
             if (!sameTravel) {
-              alert("新增成功")
+                alert("新增成功")
                 for (let i = 0; i < this.myFavorite.length; i++) {
-                   
+
                     this.favorite.push({
                         id: this.myFavorite[i].id,
                         district: this.myFavorite[i].district,
                         name: this.myFavorite[i].name,
                         address: this.myFavorite[i].address,
-                        tel:this.travelData[i].tel,
+                        tel: this.travelData[i].tel,
                         lat: this.myFavorite[i].lat,
                         long: this.myFavorite[i].long
 
                     })
                 }
                 this.setLocalStorage()
-               this.myFavorite=[]
-             
+                this.myFavorite = []
+
             } else {
-                alert("已加入我的最愛")
+                this.sameNumber = this.favorite.filter(v => this.myFavorite.find(u => v.id === u.id))
+
+                for (let i = 0; i < this.sameNumber.length; i++) {
+                    alert(`${this.sameNumber[i].name}已加入`)
+                }
+
             }
         },
-        keyWordSearch(){
-           this.travelData = this.travelInfo.filter(item=>item.name==this.travelSearch ||
-            item.district==this.travelSearch ||
-            item.name[0]==this.travelSearch[0])
+        keyWordSearch() {
+            this.travelData = this.travelInfo.filter(item => item.name == this.travelSearch ||
+                item.district == this.travelSearch)
         },
         setLocalStorage() {
             localStorage.setItem("myFavorite", JSON.stringify(this.favorite))
+        },
+        getFavouriteInfo() {
+            let favouriteInfo = localStorage.getItem("myFavorite");
+            this.favorite = JSON.parse(favouriteInfo)
+
         },
     },
     computed: {
@@ -115,16 +126,17 @@ Vue.createApp({
         travelArea() {
             this.travelData = this.travelInfo.filter(item => item.district === this.travelArea)
         },
-        travelSearch:{
-            handler(newVal){
-                if(newVal==""){
-                    this.travelData=this.travelInfo.slice(this.idNumMin, this.idNumMax)
+        travelSearch: {
+            handler(newVal) {
+                if (newVal == "") {
                 }
+                this.travelData = this.travelInfo.slice(this.idNumMin, this.idNumMax)
             }
         }
     },
     created() {
         this.getTravelinformation()
         this.getAreaName()
+        this.getFavouriteInfo()
     }
 }).mount("#app")
