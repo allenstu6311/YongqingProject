@@ -1,0 +1,75 @@
+.myFavourite-list{
+    
+    .map-container{
+        #map{
+            height: 50vh;
+        }
+    }
+    .favourite-head{
+        text-align: center;
+        font-weight: 800;
+        margin: 30px 0;
+    }
+    .favourite-container{
+        @include container();
+    
+        .favourite-item{
+            display: flex;
+            margin: 0 auto;
+           padding: 10px 0;
+            input[type="checkbox"]{
+                width: 20px;
+                height: 20px;
+            }
+            .favourite-item-page{
+                width: 100%;
+                max-width: 300px;
+                line-height: 1.5;
+                margin: auto;
+                text-align: left;
+              
+                .favourite-title{
+                    width: 130px;
+                    background-color: red;
+                    padding: 0 5px;
+                    text-align: center;
+                    border-radius: 10px;
+                    h4{
+                        color: white;
+                        font-weight: 800;  
+                    }
+                }
+                .favourite-body{
+                    line-height: 1.5;
+                .favourite-item-name{
+                    h5{
+                        font-weight: 800;
+                    }
+                }
+                .favourite-item-address{}
+                }
+                .my-favourite{
+                    display: flex;
+                }
+                button{
+                    @include button(100px,14px);
+                }
+            } 
+        }    
+    }
+    .delete-all{
+        @include container();
+        margin: 30px 0;
+        text-align: center;
+        
+        button{
+            @include button();
+        }
+        span{
+            font-size: 20px;
+            margin: 0 10px;
+        }
+    
+    }
+}
+

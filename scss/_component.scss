@@ -1,0 +1,60 @@
+$fontSize:64px;
+
+$fonSizeList:(
+    "h1":$fontSize,
+    "h2":($fontSize)-24px,
+    "h3":($fontSize)-32px,
+    "h4":($fontSize)-40px,
+    "h5":($fontSize)-44px,
+    "h6":($fontSize)-48px,
+    "p":($fontSize)-48px,
+    "span":($fontSize)-48px,
+    "a":($fontSize)-48px,
+);
+
+@each $key,$val in $fonSizeList{
+    #{$key}{
+        font-size: $val;
+    }
+}
+
+$fontColor:(
+    "h1":black,
+    "h2":black,
+    "h3":black,
+    "h4":black,
+    "h5":black,
+    "h6":black,
+    "p":black,
+    "span":black,
+);
+
+@each $key,$val in $fontColor{
+    #{$key}{
+        color: $val;
+    }
+}
+@mixin container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+@mixin url {
+    text-decoration: none;
+    display: block;
+
+}
+@mixin button($width:150px, $size:20px) {
+    width: $width;
+    padding: 5px;
+    font-weight: 800;
+    font-size: $size;
+    border-radius: 20px;
+    background-color: blue;
+    color: white;
+
+    &:active{
+        transform: translateY(3px);
+    }
+}

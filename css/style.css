@@ -1,0 +1,427 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+*, *::before, *::after {
+  box-sizing: content-box;
+}
+
+.row {
+  margin: 0;
+  padding: 0;
+  flex-wrap: nowrap;
+}
+
+h1 {
+  font-size: 64px;
+}
+
+h2 {
+  font-size: 40px;
+}
+
+h3 {
+  font-size: 32px;
+}
+
+h4 {
+  font-size: 24px;
+}
+
+h5 {
+  font-size: 20px;
+}
+
+h6 {
+  font-size: 16px;
+}
+
+p {
+  font-size: 16px;
+}
+
+span {
+  font-size: 16px;
+}
+
+a {
+  font-size: 16px;
+}
+
+h1 {
+  color: black;
+}
+
+h2 {
+  color: black;
+}
+
+h3 {
+  color: black;
+}
+
+h4 {
+  color: black;
+}
+
+h5 {
+  color: black;
+}
+
+h6 {
+  color: black;
+}
+
+p {
+  color: black;
+}
+
+span {
+  color: black;
+}
+
+.travel-place {
+  margin: 20px 0;
+  text-align: center;
+}
+.travel-place h2 {
+  font-weight: 800;
+}
+
+.travel-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+}
+.travel-container .travel-filter {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  margin: 20px 0;
+  text-align: center;
+}
+.travel-container .travel-item {
+  display: flex;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+.travel-container .travel-item input[type=checkbox] {
+  width: 20px;
+  height: 20px;
+}
+.travel-container .travel-item .travel-item-page {
+  width: 100%;
+  max-width: 300px;
+  line-height: 1.5;
+  margin: auto;
+  text-align: left;
+}
+.travel-container .travel-item .travel-item-page .travel-title {
+  width: 130px;
+  background-color: red;
+  padding: 0 5px;
+  text-align: center;
+  border-radius: 10px;
+}
+.travel-container .travel-item .travel-item-page .travel-title h4 {
+  color: white;
+  font-weight: 800;
+}
+.travel-container .travel-item .travel-item-page .travel-body {
+  line-height: 1.5;
+}
+.travel-container .travel-item .travel-item-page .travel-body .travel-item-name h5 {
+  font-weight: 800;
+}
+.travel-container .travel-item .travel-item-page .my-favorite {
+  display: flex;
+}
+.travel-container .travel-item .travel-item-page button {
+  width: 100px;
+  padding: 5px;
+  font-weight: 800;
+  font-size: 14px;
+  border-radius: 20px;
+  background-color: blue;
+  color: white;
+}
+.travel-container .travel-item .travel-item-page button:active {
+  transform: translateY(3px);
+}
+
+.select-all {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  margin: 30px 0;
+  text-align: center;
+}
+.select-all button {
+  width: 150px;
+  padding: 5px;
+  font-weight: 800;
+  font-size: 20px;
+  border-radius: 20px;
+  background-color: blue;
+  color: white;
+}
+.select-all button:active {
+  transform: translateY(3px);
+}
+
+.turn-page {
+  display: flex;
+  justify-content: center;
+}
+.turn-page .chose-page {
+  font-size: 20px;
+  margin: 5px 10px;
+}
+
+@media screen and (min-width: 1024px) {
+  .travel-place {
+    margin: 20px 0;
+    text-align: center;
+  }
+  .travel-place h2 {
+    font-weight: 800;
+  }
+  .travel-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+  }
+  .travel-container .travel-filter {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    margin: 20px 0;
+    text-align: center;
+  }
+  .travel-container .travel-item {
+    display: flex;
+    margin: 0 auto;
+    padding: 10px 0;
+  }
+  .travel-container .travel-item input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+  }
+  .travel-container .travel-item .travel-item-page {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    line-height: 1.5;
+    margin: auto;
+    text-align: center;
+  }
+  .travel-container .travel-item .travel-item-page .travel-title {
+    margin-right: 10px;
+    width: 130px;
+    background-color: red;
+    padding: 0 5px;
+    text-align: center;
+    border-radius: 10px;
+  }
+  .travel-container .travel-item .travel-item-page .travel-title h4 {
+    color: white;
+    font-weight: 800;
+  }
+  .travel-container .travel-item .travel-item-page .travel-body {
+    display: flex;
+    line-height: 1.5;
+  }
+  .travel-container .travel-item .travel-item-page .travel-body .travel-item-name {
+    margin-right: 10px;
+  }
+  .travel-container .travel-item .travel-item-page .travel-body .travel-item-address {
+    margin-right: 10px;
+  }
+  .travel-container .travel-item .travel-item-page .my-favorite {
+    display: block;
+    margin-right: 0;
+  }
+  .travel-container .travel-item .travel-item-page button {
+    width: 100px;
+    padding: 5px;
+    font-weight: 800;
+    font-size: 14px;
+    border-radius: 20px;
+    background-color: blue;
+    color: white;
+  }
+  .travel-container .travel-item .travel-item-page button:active {
+    transform: translateY(3px);
+  }
+  .select-all {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    margin: 30px 0;
+    text-align: center;
+  }
+  .select-all button {
+    width: 150px;
+    padding: 5px;
+    font-weight: 800;
+    font-size: 20px;
+    border-radius: 20px;
+    background-color: blue;
+    color: white;
+  }
+  .select-all button:active {
+    transform: translateY(3px);
+  }
+  .turn-page {
+    display: flex;
+    justify-content: center;
+  }
+  .turn-page .chose-page {
+    font-size: 20px;
+    margin: 5px 10px;
+  }
+}
+.pageColor {
+  color: red;
+}
+
+.bgColor {
+  background-color: antiquewhite;
+  padding: 10px;
+}
+
+.myFavourite-list .map-container #map {
+  height: 50vh;
+}
+.myFavourite-list .favourite-head {
+  text-align: center;
+  font-weight: 800;
+  margin: 30px 0;
+}
+.myFavourite-list .favourite-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+}
+.myFavourite-list .favourite-container .favourite-item {
+  display: flex;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+.myFavourite-list .favourite-container .favourite-item input[type=checkbox] {
+  width: 20px;
+  height: 20px;
+}
+.myFavourite-list .favourite-container .favourite-item .favourite-item-page {
+  width: 100%;
+  max-width: 300px;
+  line-height: 1.5;
+  margin: auto;
+  text-align: left;
+}
+.myFavourite-list .favourite-container .favourite-item .favourite-item-page .favourite-title {
+  width: 130px;
+  background-color: red;
+  padding: 0 5px;
+  text-align: center;
+  border-radius: 10px;
+}
+.myFavourite-list .favourite-container .favourite-item .favourite-item-page .favourite-title h4 {
+  color: white;
+  font-weight: 800;
+}
+.myFavourite-list .favourite-container .favourite-item .favourite-item-page .favourite-body {
+  line-height: 1.5;
+}
+.myFavourite-list .favourite-container .favourite-item .favourite-item-page .favourite-body .favourite-item-name h5 {
+  font-weight: 800;
+}
+.myFavourite-list .favourite-container .favourite-item .favourite-item-page .my-favourite {
+  display: flex;
+}
+.myFavourite-list .favourite-container .favourite-item .favourite-item-page button {
+  width: 100px;
+  padding: 5px;
+  font-weight: 800;
+  font-size: 14px;
+  border-radius: 20px;
+  background-color: blue;
+  color: white;
+}
+.myFavourite-list .favourite-container .favourite-item .favourite-item-page button:active {
+  transform: translateY(3px);
+}
+.myFavourite-list .delete-all {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  margin: 30px 0;
+  text-align: center;
+}
+.myFavourite-list .delete-all button {
+  width: 150px;
+  padding: 5px;
+  font-weight: 800;
+  font-size: 20px;
+  border-radius: 20px;
+  background-color: blue;
+  color: white;
+}
+.myFavourite-list .delete-all button:active {
+  transform: translateY(3px);
+}
+.myFavourite-list .delete-all span {
+  font-size: 20px;
+  margin: 0 10px;
+}/*# sourceMappingURL=style.css.map */

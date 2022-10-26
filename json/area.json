@@ -1,0 +1,195 @@
+[
+
+    {
+      "CityName": "臺南市",
+      "CityEngName": "Tainan City",
+      "AreaList": [
+        {
+          "ZipCode": "700",
+          "AreaName": "中西區",
+          "AreaEngName": "West Central Dist."
+        },
+        {
+          "ZipCode": "701",
+          "AreaName": "東區",
+          "AreaEngName": "East Dist."
+        },
+        {
+          "ZipCode": "702",
+          "AreaName": "南區",
+          "AreaEngName": "South Dist."
+        },
+        {
+          "ZipCode": "704",
+          "AreaName": "北區",
+          "AreaEngName": "North Dist."
+        },
+        {
+          "ZipCode": "708",
+          "AreaName": "安平區",
+          "AreaEngName": "Anping Dist."
+        },
+        {
+          "ZipCode": "709",
+          "AreaName": "安南區",
+          "AreaEngName": "Annan Dist."
+        },
+        {
+          "ZipCode": "710",
+          "AreaName": "永康區",
+          "AreaEngName": "Yongkang Dist."
+        },
+        {
+          "ZipCode": "711",
+          "AreaName": "歸仁區",
+          "AreaEngName": "Guiren Dist."
+        },
+        {
+          "ZipCode": "712",
+          "AreaName": "新化區",
+          "AreaEngName": "Xinhua Dist."
+        },
+        {
+          "ZipCode": "713",
+          "AreaName": "左鎮區",
+          "AreaEngName": "Zuozhen Dist."
+        },
+        {
+          "ZipCode": "714",
+          "AreaName": "玉井區",
+          "AreaEngName": "Yujing Dist."
+        },
+        {
+          "ZipCode": "715",
+          "AreaName": "楠西區",
+          "AreaEngName": "Nanxi Dist."
+        },
+        {
+          "ZipCode": "716",
+          "AreaName": "南化區",
+          "AreaEngName": "Nanhua Dist."
+        },
+        {
+          "ZipCode": "717",
+          "AreaName": "仁德區",
+          "AreaEngName": "Rende Dist."
+        },
+        {
+          "ZipCode": "718",
+          "AreaName": "關廟區",
+          "AreaEngName": "Guanmiao Dist."
+        },
+        {
+          "ZipCode": "719",
+          "AreaName": "龍崎區",
+          "AreaEngName": "Longqi Dist."
+        },
+        {
+          "ZipCode": "720",
+          "AreaName": "官田區",
+          "AreaEngName": "Guantian Dist."
+        },
+        {
+          "ZipCode": "721",
+          "AreaName": "麻豆區",
+          "AreaEngName": "Madou Dist."
+        },
+        {
+          "ZipCode": "722",
+          "AreaName": "佳里區",
+          "AreaEngName": "Jiali Dist."
+        },
+        {
+          "ZipCode": "723",
+          "AreaName": "西港區",
+          "AreaEngName": "Xigang Dist."
+        },
+        {
+          "ZipCode": "724",
+          "AreaName": "七股區",
+          "AreaEngName": "Qigu Dist."
+        },
+        {
+          "ZipCode": "725",
+          "AreaName": "將軍區",
+          "AreaEngName": "Jiangjun Dist."
+        },
+        {
+          "ZipCode": "726",
+          "AreaName": "學甲區",
+          "AreaEngName": "Xuejia Dist."
+        },
+        {
+          "ZipCode": "727",
+          "AreaName": "北門區",
+          "AreaEngName": "Beimen Dist."
+        },
+        {
+          "ZipCode": "730",
+          "AreaName": "新營區",
+          "AreaEngName": "Xinying Dist."
+        },
+        {
+          "ZipCode": "731",
+          "AreaName": "後壁區",
+          "AreaEngName": "Houbi Dist."
+        },
+        {
+          "ZipCode": "732",
+          "AreaName": "白河區",
+          "AreaEngName": "Baihe Dist."
+        },
+        {
+          "ZipCode": "733",
+          "AreaName": "東山區",
+          "AreaEngName": "Dongshan Dist."
+        },
+        {
+          "ZipCode": "734",
+          "AreaName": "六甲區",
+          "AreaEngName": "Liujia Dist."
+        },
+        {
+          "ZipCode": "735",
+          "AreaName": "下營區",
+          "AreaEngName": "Xiaying Dist."
+        },
+        {
+          "ZipCode": "736",
+          "AreaName": "柳營區",
+          "AreaEngName": "Liuying Dist."
+        },
+        {
+          "ZipCode": "737",
+          "AreaName": "鹽水區",
+          "AreaEngName": "Yanshui Dist."
+        },
+        {
+          "ZipCode": "741",
+          "AreaName": "善化區",
+          "AreaEngName": "Shanhua Dist."
+        },
+        {
+          "ZipCode": "744",
+          "AreaName": "新市區",
+          "AreaEngName": "Xinshi Dist."
+        },
+        {
+          "ZipCode": "742",
+          "AreaName": "大內區",
+          "AreaEngName": "Danei Dist."
+        },
+        {
+          "ZipCode": "743",
+          "AreaName": "山上區",
+          "AreaEngName": "Shanshang Dist."
+        },
+        {
+          "ZipCode": "745",
+          "AreaName": "安定區",
+          "AreaEngName": "Anding Dist."
+        }
+      ]
+    }
+   
+  ]

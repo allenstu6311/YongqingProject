@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Document</title>
+</head>
+<body>
+
+
+<div id="app">
+    <div class="myFavourite-list">
+        <div class="map-container">
+            <div id="map"></div>
+        </div>
+        <div class="favourite-head">
+            <h2>我的最愛</h2>
+        </div>
+        <div class="favourite-container">
+            <div class="favourite-item" v-for="(item,index) in favourite"  :class="{bgColor:index%2===0}">
+                <div class="favourite-item-page">
+                    <div class="favourite-title">
+                        <h4>{{item.district}}</h4>
+                    </div>
+                    <div class="favourite-body">
+                        <div class="favourite-item-name">
+                            <h5>{{item.name}}</h5>
+                        </div>
+                        <div class="favourite-item-address">
+                            {{item.address}}
+                        </div>
+                        <span class="remove-favorite">
+                            <input type="checkbox" v-model="removeFavorite">
+                        </span>
+                        <button @click="deleteFavorite(item.id)">移出最愛</button>
+                    </div>
+                </div>
+            </div>
+            <div class="delete-all">
+                <span><input type="checkbox">全選</span>
+                <button @click="addTotal">刪除全選</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+  
+    <script src="02.js"></script>
+
+</body>
+</html>

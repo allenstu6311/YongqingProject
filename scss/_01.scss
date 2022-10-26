@@ -1,0 +1,176 @@
+.travel-place{
+    margin: 20px 0;
+    text-align: center;
+    h2{
+        font-weight: 800
+    }
+}
+.travel-container{
+    @include container();
+
+    .travel-filter{
+        @include container();
+        margin: 20px 0;
+        text-align: center;
+    }
+    .travel-item{
+        display: flex;
+        margin: 0 auto;
+       padding: 10px 0;
+        input[type="checkbox"]{
+            width: 20px;
+            height: 20px;
+        }
+        .travel-item-page{
+            width: 100%;
+            max-width: 300px;
+            line-height: 1.5;
+            margin: auto;
+            text-align: left;
+          
+            .travel-title{
+                width: 130px;
+                background-color: red;
+                padding: 0 5px;
+                text-align: center;
+                border-radius: 10px;
+                
+                h4{
+                    color: white;
+                    font-weight: 800;  
+                }
+                
+            }
+            .travel-body{
+                line-height: 1.5;
+            .travel-item-name{
+                h5{
+                    font-weight: 800;
+                }
+            }
+            .travel-item-address{}
+            }
+            .my-favorite{
+                display: flex;
+            }
+            button{
+                @include button(100px,14px);
+            }
+        } 
+    }    
+}
+.select-all{
+    @include container();
+    margin: 30px 0;
+    text-align: center;
+    
+    button{
+        @include button();
+    }
+
+}
+.turn-page{
+    display: flex;
+    justify-content: center;
+    .chose-page{
+        font-size: 20px;
+        margin: 5px 10px;
+    }
+    
+}
+// ====================================1024
+@media screen and (min-width:1024px) {
+    .travel-place{
+        margin: 20px 0;
+        text-align: center;
+        h2{
+            font-weight: 800
+        }
+    }
+    .travel-container{
+        @include container();
+    
+        .travel-filter{
+            @include container();
+            margin: 20px 0;
+            text-align: center;
+        }
+        .travel-item{
+            display: flex;
+            margin: 0 auto;
+           padding: 10px 0;
+            input[type="checkbox"]{
+                width: 20px;
+                height: 20px;
+            }
+            .travel-item-page{
+                display: flex;
+                align-items: center;
+                width: 100%;
+                max-width: 1200px;
+                line-height: 1.5;
+                margin: auto;
+                text-align: center;
+              
+                .travel-title{
+                    margin-right: 10px;
+                    width: 130px;
+                    background-color: red;
+                    padding: 0 5px;
+                    text-align: center;
+                    border-radius: 10px;
+                    
+                    h4{
+                        color: white;
+                        font-weight: 800;  
+                    }
+                    
+                }
+                .travel-body{
+                    display: flex;
+                    
+                    line-height: 1.5;
+                .travel-item-name{
+                    margin-right: 10px;
+                }
+                .travel-item-address{
+                    margin-right: 10px;
+                }
+                }
+                .my-favorite{
+                    display: block;
+                    margin-right: 0;
+                }
+                button{
+                    @include button(100px,14px);
+                }
+            } 
+        }    
+    }
+    .select-all{
+        @include container();
+        margin: 30px 0;
+        text-align: center;
+        
+        button{
+            @include button();
+        }
+    
+    }
+    .turn-page{
+        display: flex;
+        justify-content: center;
+        .chose-page{
+            font-size: 20px;
+            margin: 5px 10px;
+        }
+        
+    }
+}
+.pageColor{
+    color: red;
+}
+.bgColor{
+    background-color: antiquewhite;
+    padding:10px;
+}
