@@ -153,7 +153,7 @@ span {
 .travel-place .chose-list {
   width: 30vw;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0px;
   background-color: black;

@@ -25,7 +25,7 @@
                     <h2>我的最愛</h2>
                 </div>
                 <div class="favourite-item" v-for="(item,index) in favourite" :class="{bgColor:index%2===0}"
-                @click="updateMap(item.id)">
+                @click="removeMap();updateMap(item.id)">
                     <span class="remove-favorite">
                         <input type="checkbox" v-model="removeFavorite"
                         :value="item">
@@ -76,6 +76,14 @@
                     <button @click="showLightBox=false">取消</button>
                 </div>
             </div>
+        </div>
+        <div class="turn-page">
+            <button @click="prevPage"><</button>
+            <div class="chose-page" v-for="i  in  totalPages" @click="chosePage(i)" 
+            :class="{pageColor:currentPage==i}" 
+           
+            >{{i}}</div>
+            <button @click="nextPage">></button>
         </div>
     </div>
 

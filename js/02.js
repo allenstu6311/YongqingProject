@@ -13,9 +13,16 @@ Vue.createApp({
             oldAddress: '',
             oldDistrict: '',
             removeCheck:'',
+            currentPage: 1,
+            extraPage: [],
+            totalPages:'',
+            showTarget_1:0,
+            showTarget_2:5,
+            pageShow:5,
 
         }
     },
+
     methods: {
         initMap() {
             const blackIcon = new L.Icon({
@@ -57,9 +64,14 @@ Vue.createApp({
            
                   L.marker([`${positionInfo.lat}`,`${positionInfo.long}`],{ icon: blackIcon }).addTo(this.map)
             }
-
-       
         },
+        removeMap() {
+            this.map.eachLayer((layer) => {
+              if (layer instanceof L.Marker) {
+                this.map.removeLayer(layer);
+              }
+            });
+          },
         editTarget(item) {
             this.showLightBox = true
             this.attractionName = item.name
@@ -93,6 +105,9 @@ Vue.createApp({
             let favouriteInfo = localStorage.getItem("myFavorite");
             this.favourite = JSON.parse(favouriteInfo)
 
+            this.totalPages = Math.ceil(this.favourite.length / 5)
+            this.favourite = this.favourite.slice(this.showTarget_1,this.showTarget_2)
+
         },
         deleteFavorite(id) {
             let index = this.favourite.findIndex(item => item.id === id)
@@ -123,20 +138,37 @@ Vue.createApp({
                 this.removeFavorite = this.favourite
             }
         },
+        chosePage(i) {
+            this.currentPage = i
+            this.showTarget_2 =i*5
+            this.showTarget_1 =  this.showTarget_2-5
+            this. getFavouriteInfo()
+        },
+        prevPage() {
+            if (this.currentPage > 0) {
+                this.currentPage -= 1
+                this.showTarget_2 =this.currentPage*5
+                this.showTarget_1 =  this.showTarget_2-5
+                this. getFavouriteInfo()
+            }
+        },
+        nextPage() {
+            if (this.currentPage < 55) {
+                this.currentPage += 1
+                this.showTarget_2 =this.currentPage*5
+                this.showTarget_1 =  this.showTarget_2-5
+                this. getFavouriteInfo()
+            }
+        },
+      
 
     },
-    watch: {
-        removeFavorite: {
-            handler(newVal) {
-                // console.log(newVal)
-            }
-        }
-    },
+ 
     mounted() {
         this.initMap()
     },
     created() {
         this.getFavouriteInfo()
-
+  
     },
 }).mount("#app")

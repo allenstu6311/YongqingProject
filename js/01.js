@@ -11,19 +11,20 @@ Vue.createApp({
             myFavorite: [],
             currentPage: 1,
             extraPage: [],
-            extraPage_min: -3,
-            extraPage_max: 8,
+            pageShow: 8,
             favorite: [],
-            sameNumber: [],
-            showList:false,
+            showList: false,
+            totalPages:55,
         }
     },
     methods: {
         getTravelinformation() {
+            this.travelData = []
             axios.get("./json/info.json")
                 .then((res) => {
                     this.travelData = res.data
                     this.travelInfo = res.data
+
 
                     this.travelData = this.travelData.slice(this.idNumMin, this.idNumMax)
 
@@ -40,16 +41,48 @@ Vue.createApp({
             this.currentPage = i
             this.idNumMin = i * 10
             this.idNumMax = 10 + i * 10
-
-
-            this.extraPage_min = this.extraPage_min + i - this.extraPage_min
-            this.extraPage_max = this.extraPage_min + 8
-
-            console.log("min", this.extraPage_min)
-            console.log("max", this.extraPage_max)
-
-
             this.getTravelinformation()
+            this.updatePage()
+        },
+        updatePage() {
+
+            let start = 1
+            let end = start + this.pageShowCount
+            if (this.currentPage > this.pageShowCount) {
+                start = this.currentPage - 3
+                end = start + 7
+            }
+            if (this.totalPages > this.pageShowCount && this.currentPage >= this.totalPages - 1) {
+                end = this.totalPages,
+                    start = this.currentPage - 4
+            }
+            this.extraPage = []
+            for (let index = start; index <= end; index++) {
+                if (index <= 54) {
+                    this.extraPage.push(index)
+                }
+                this.extraPage = this.extraPage.slice(0, 8)
+
+            }
+
+        },
+        prevPage() {
+            if (this.currentPage > 0) {
+                this.currentPage -= 1
+                this.idNumMin = this.currentPage * 10
+                this.idNumMax = 10 + this.currentPage * 10
+                this.getTravelinformation()
+                this.updatePage()
+            }
+        },
+        nextPage() {
+            if (this.currentPage < 55) {
+                this.currentPage += 1
+                this.idNumMin = this.currentPage * 10
+                this.idNumMax = 10 + this.currentPage * 10
+                this.getTravelinformation()
+                this.updatePage()
+            }
         },
         addFavorite(id) {
             let sameTravel = this.favorite.find(item => item.id === id)
@@ -121,6 +154,14 @@ Vue.createApp({
         travelDataLength() {
             return Math.ceil(this.travelInfo.length / 10)
         },
+        pageShowCount() {
+            if (this.totalPages <= this.pageShow) {
+                return this.totalPages - 1
+            } else {
+
+                return this.pageShow - 1
+            }
+        },
     },
     watch: {
         travelArea() {
@@ -132,11 +173,18 @@ Vue.createApp({
                 }
                 this.travelData = this.travelInfo.slice(this.idNumMin, this.idNumMax)
             }
-        }
+        },
     },
     created() {
         this.getTravelinformation()
         this.getAreaName()
         this.getFavouriteInfo()
-    }
+        this.updatePage()
+    },
+    mounted() {
+        
+        this.totalPages = Math.ceil(this.travelInfo.length / 10)
+
+        console.log(this.travelInfo)
+    },
 }).mount("#app")
