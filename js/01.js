@@ -12,9 +12,14 @@ Vue.createApp({
             currentPage: 1,
             extraPage: [],
             pageShow: 8,
-            favorite: [],
+            favorite: 123,
             showList: false,
-            totalPages:55,
+            totalPages: 55,
+            collect: [],
+            judge: false,
+            dashed_1:0,
+            dashed_2:0,
+            totalFavitore:'',
         }
     },
     methods: {
@@ -24,7 +29,6 @@ Vue.createApp({
                 .then((res) => {
                     this.travelData = res.data
                     this.travelInfo = res.data
-
 
                     this.travelData = this.travelData.slice(this.idNumMin, this.idNumMax)
 
@@ -38,14 +42,21 @@ Vue.createApp({
         },
 
         chosePage(i) {
-            this.currentPage = i
-            this.idNumMin = i * 10
-            this.idNumMax = 10 + i * 10
-            this.getTravelinformation()
-            this.updatePage()
+            if (!this.judge) {
+                this.currentPage = i
+                this.idNumMax = i * 10
+                this.idNumMin = this.idNumMax - 10
+                this.getTravelinformation()
+                this.updatePage()
+            } else {
+                this.currentPage = i
+                this.idNumMax = i * 10
+                this.idNumMin = this.idNumMax - 10
+                this.filterArea()
+            }
+
         },
         updatePage() {
-
             let start = 1
             let end = start + this.pageShowCount
             if (this.currentPage > this.pageShowCount) {
@@ -61,38 +72,57 @@ Vue.createApp({
                 if (index <= 54) {
                     this.extraPage.push(index)
                 }
+                this.dashed_2 = this.extraPage.includes(54)
+                this.dashed_1 = this.extraPage.includes(1)
                 this.extraPage = this.extraPage.slice(0, 8)
-
             }
 
         },
         prevPage() {
-            if (this.currentPage > 0) {
-                this.currentPage -= 1
-                this.idNumMin = this.currentPage * 10
-                this.idNumMax = 10 + this.currentPage * 10
-                this.getTravelinformation()
-                this.updatePage()
+            if (!this.judge) {
+                if (this.currentPage > 0) {
+                    this.currentPage -= 1
+                    this.idNumMin = this.currentPage * 10
+                    this.idNumMax = 10 + this.currentPage * 10
+                    this.getTravelinformation()
+                    this.updatePage()
+                }
+            } else {
+                if (this.currentPage > 0) {
+                    this.currentPage -= 1
+                    this.idNumMin = this.currentPage * 10
+                    this.idNumMax = 10 + this.currentPage * 10
+                    this.filterArea()
+                }
             }
+
         },
         nextPage() {
-            if (this.currentPage < 55) {
-                this.currentPage += 1
-                this.idNumMin = this.currentPage * 10
-                this.idNumMax = 10 + this.currentPage * 10
-                this.getTravelinformation()
-                this.updatePage()
+            if (!this.judge) {
+                if (this.currentPage < 55) {
+                    this.currentPage += 1
+                    this.idNumMin = this.currentPage * 10
+                    this.idNumMax = 10 + this.currentPage * 10
+                    this.getTravelinformation()
+                    this.updatePage()
+                }
+            } else {
+                if (this.currentPage < this.extraPage.length) {
+                    this.currentPage += 1
+                    this.idNumMin = this.currentPage * 10
+                    this.idNumMax = 10 + this.currentPage * 10
+                    this.filterArea()
+                }
             }
+
         },
         addFavorite(id) {
-            let sameTravel = this.favorite.find(item => item.id === id)
-
+            let sameTravel = this.collect ? this.collect.find(item => item.id === id) : null
             let index = this.travelData.findIndex(item => item.id === id)
 
-
-            if (!sameTravel) {
+            if (this.collect && !sameTravel) {
                 alert("新增成功")
-                this.favorite.push({
+                this.collect.push({
                     id: id,
                     district: this.travelData[index].district,
                     name: this.travelData[index].name,
@@ -108,13 +138,13 @@ Vue.createApp({
             this.setLocalStorage();
         },
         addTotal() {
-            let sameTravel = this.favorite.find(v => this.myFavorite.find(u => v.id === u.id))
+            let sameTravel = this.collect.find(v => this.myFavorite.find(u => v.id === u.id))
 
             if (!sameTravel) {
                 alert("新增成功")
                 for (let i = 0; i < this.myFavorite.length; i++) {
 
-                    this.favorite.push({
+                    this.collect.push({
                         id: this.myFavorite[i].id,
                         district: this.myFavorite[i].district,
                         name: this.myFavorite[i].name,
@@ -129,7 +159,7 @@ Vue.createApp({
                 this.myFavorite = []
 
             } else {
-                this.sameNumber = this.favorite.filter(v => this.myFavorite.find(u => v.id === u.id))
+                this.sameNumber = this.collect.filter(v => this.myFavorite.find(u => v.id === u.id))
 
                 for (let i = 0; i < this.sameNumber.length; i++) {
                     alert(`${this.sameNumber[i].name}已加入`)
@@ -142,19 +172,43 @@ Vue.createApp({
                 item.district == this.travelSearch)
         },
         setLocalStorage() {
-            localStorage.setItem("myFavorite", JSON.stringify(this.favorite))
+            localStorage.setItem("myFavorite", JSON.stringify(this.collect))
         },
         getFavouriteInfo() {
-            let favouriteInfo = localStorage.getItem("myFavorite");
-            this.favorite = JSON.parse(favouriteInfo)
 
+            let favouriteInfo = localStorage.getItem("myFavorite");
+
+            if (!favouriteInfo) {
+                return
+            } else {
+                this.collect = JSON.parse(favouriteInfo)
+            }
         },
+        filterArea() {
+            this.judge = true
+            this.travelData = this.travelInfo.filter(item => item.district === this.travelArea)
+
+            this.extraPage = []
+            for (let i = 1; i < Math.ceil(this.travelData.length / 10); i++) {
+                this.extraPage.push(i)
+            }
+            this.travelData = this.travelData.slice(this.idNumMin, this.idNumMax)
+        },
+        checkAll(){
+     
+            if(this.totalFavitore){
+                this.myFavorite=[]
+             
+            }else{
+                this.myFavorite =  this.travelData  
+            }
+        }
     },
     computed: {
         travelDataLength() {
             return Math.ceil(this.travelInfo.length / 10)
         },
-        pageShowCount() {
+        pageShowCount() {//?
             if (this.totalPages <= this.pageShow) {
                 return this.totalPages - 1
             } else {
@@ -164,9 +218,6 @@ Vue.createApp({
         },
     },
     watch: {
-        travelArea() {
-            this.travelData = this.travelInfo.filter(item => item.district === this.travelArea)
-        },
         travelSearch: {
             handler(newVal) {
                 if (newVal == "") {
@@ -174,17 +225,25 @@ Vue.createApp({
                 this.travelData = this.travelInfo.slice(this.idNumMin, this.idNumMax)
             }
         },
+        dashed:{
+            handler(newVal){
+                console.log(newVal)
+            }
+        },
+        totalFavitore:{
+
+        }
     },
     created() {
         this.getTravelinformation()
         this.getAreaName()
         this.getFavouriteInfo()
         this.updatePage()
+
     },
     mounted() {
-        
-        this.totalPages = Math.ceil(this.travelInfo.length / 10)
+      
+        // this.totalPages = Math.ceil(this.travelInfo.length / 10)
 
-        console.log(this.travelInfo)
     },
 }).mount("#app")

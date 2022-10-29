@@ -19,7 +19,12 @@ Vue.createApp({
             showTarget_1:0,
             showTarget_2:5,
             pageShow:5,
-
+            weatherData:[],
+            targetArea:[],
+            rain:'',
+            weather:'',
+            temperature:'',
+            showList: false,
         }
     },
 
@@ -71,7 +76,7 @@ Vue.createApp({
                 this.map.removeLayer(layer);
               }
             });
-          },
+        },
         editTarget(item) {
             this.showLightBox = true
             this.attractionName = item.name
@@ -83,18 +88,21 @@ Vue.createApp({
             this.attractionDistrict = item.district
             this.oldDistrict = item.district
 
-
         },
         editFinish() {
 
             let index = this.favourite.findIndex(item => item.name === this.oldName)
-
+            let reg = new RegExp("^[\u4e00-\u9fa5]+$");
+            if(!reg.test(this.attractionName)){
+                alert("不能輸入中文以外的其他字元")
+            }else{
             this.favourite[index].name = this.attractionName
             this.showLightBox = false
             this.favourite[index].address = this.attractionAddress
             this.showLightBox = false
             this.favourite[index].district = this.attractionDistrict
             this.showLightBox = false
+            }
 
             this.setLocalStorage()
         },
@@ -105,8 +113,9 @@ Vue.createApp({
             let favouriteInfo = localStorage.getItem("myFavorite");
             this.favourite = JSON.parse(favouriteInfo)
 
-            this.totalPages = Math.ceil(this.favourite.length / 5)
-            this.favourite = this.favourite.slice(this.showTarget_1,this.showTarget_2)
+            this.totalPages = this.favourite? Math.ceil(this.favourite.length / 5):0
+            this.favourite = this.favourite?this.favourite.slice(this.showTarget_1,this.showTarget_2):[]
+            this.favourite = this.favourite.reverse()
 
         },
         deleteFavorite(id) {
@@ -160,6 +169,18 @@ Vue.createApp({
                 this. getFavouriteInfo()
             }
         },
+        getWeather(name){
+            axios.get('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-077?Authorization=CWB-49AA74DB-046A-4623-98C3-A4334859895C&format=JSON')
+            .then((res)=>{
+                this.weatherData = res.data.records.locations[0].location
+                // console.log(this.weatherData)
+                this.targetArea = this.weatherData.find(item=>item.locationName==name)
+
+                this.rain = this.targetArea.weatherElement[0].time[1].elementValue[0].value
+                this.weather = this.targetArea.weatherElement[1].time[1].elementValue[0].value
+                this.temperature = this.targetArea.weatherElement[2].time[1].elementValue[0].value
+            })
+        }
       
 
     },

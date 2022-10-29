@@ -12,20 +12,46 @@
 </head>
 
 <body>
-
-
     <div id="app">
+        <div class="travel-place">
+            <h2>我的最愛</h2>
+            <div class="chose-page" @click="showList=!showList">
+                <div class="chose-control" :class="{turnAngle_1:showList}"></div>
+                <div class="chose-control" :class="{turnAngle_2:showList}"></div>
+                <transition name="called">
+                    <nav class="chose-list" v-show="showList">
+                        <a href="/01.html">旅遊地點查詢</a>
+                        <a href="/02.html">我的最愛</a>
+                    </nav>
+                </transition>
+            </div>
+        </div>
         <div class="myFavourite-list">
             <div class="map-container">
                 <div id="map"></div>
+                <div class="weather-report" v-if="targetArea!=''">
+                    <span>地區:{{targetArea.locationName}}</span>
+                    <span>降雨機率:{{rain}}%
+                        <small v-if="rain>40">☔</small>
+                    </span>
+                    <span>天氣狀況:{{weather }}
+                        <small v-if="weather=='晴時多雲'">⛅</small>
+                        <small v-if="weather=='陰天'">🌨</small>
+                        <small v-if="weather=='晴'">🌞</small>
+                        <small v-if="weather=='多雲'">☁</small>
+
+                    </span>
+                    <span>溫度:{{temperature}}度</span>
+                </div>
             </div>
           
             <div class="favourite-container">
-                <div class="favourite-head">
-                    <h2>我的最愛</h2>
+                <div class="empty-data" v-if="!favourite.length">
+                    <h2>目前沒有最愛</h2>
                 </div>
                 <div class="favourite-item" v-for="(item,index) in favourite" :class="{bgColor:index%2===0}"
-                @click="removeMap();updateMap(item.id)">
+                @click="removeMap();updateMap(item.id);getWeather(item.district)">
+               
                     <span class="remove-favorite">
                         <input type="checkbox" v-model="removeFavorite"
                         :value="item">
@@ -56,6 +82,15 @@
                     <button @click="removeTotal"
                     >刪除全選</button>
                 </div>
+                <div class="turn-page">
+                    <button @click="prevPage"><</button>
+                    <div class="chose-page" v-for="i  in  totalPages" @click="chosePage(i)" 
+                    :class="{pageColor:currentPage==i}" 
+                   
+                    >{{i}}</div>
+                    <span v-if="!totalPages">0</span>
+                    <button @click="nextPage">></button>
+                </div>
             </div>
         </div>
         <div class="edit-light-box" v-show="showLightBox">
@@ -77,22 +112,16 @@
                 </div>
             </div>
         </div>
-        <div class="turn-page">
-            <button @click="prevPage"><</button>
-            <div class="chose-page" v-for="i  in  totalPages" @click="chosePage(i)" 
-            :class="{pageColor:currentPage==i}" 
-           
-            >{{i}}</div>
-            <button @click="nextPage">></button>
-        </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.3/axios.js"
+    integrity="sha512-xjzDqCmpabFznyCZ92vM1F0gg8ExgSukopZQOCcVbObLyJSmZAkaB9wzOCeSClearljJcjRh67cGDp2uv4diLg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
         integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
 
     <script src="https://unpkg.com/vue@next"></script>
-
-
+  
     <script src="./js/02.js"></script>
 
 </body>

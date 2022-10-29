@@ -131,7 +131,6 @@ span {
 }
 
 .travel-place {
-  margin: 20px 0;
   border-bottom: 1px solid rgb(222, 222, 222);
   padding: 20px 20px;
   display: flex;
@@ -148,10 +147,10 @@ span {
   height: 4px;
   margin: 7px 0;
   background-color: red;
-  z-index: 10;
+  z-index: 2500;
 }
 .travel-place .chose-list {
-  width: 30vw;
+  width: 300px;
   height: 100vh;
   position: fixed;
   top: 0;
@@ -160,7 +159,8 @@ span {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  z-index: 5;
+  z-index: 2000;
+  text-align: center;
 }
 .travel-place .chose-list a {
   text-decoration: none;
@@ -264,7 +264,17 @@ span {
   max-width: 1200px;
   margin: auto;
   margin: 30px 0;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.select-all input[type=checkbox] {
+  width: 20px;
+  height: 20px;
+}
+.select-all span {
+  font-size: 25px;
+  font-weight: 800;
 }
 .select-all button {
   width: 150px;
@@ -282,6 +292,13 @@ span {
 .turn-page {
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+.turn-page button {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
 }
 .turn-page .chose-page {
   font-size: 20px;
@@ -295,6 +312,27 @@ span {
   }
   .travel-place h2 {
     font-weight: 800;
+  }
+  .travel-place .chose-list {
+    width: 500px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0px;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 2000;
+    text-align: center;
+  }
+  .travel-place .chose-list a {
+    text-decoration: none;
+    display: block;
+    font-size: 25px;
+    font-weight: 800;
+    margin: 10px 0;
+    color: white;
   }
   .travel-container {
     width: 100%;
@@ -325,6 +363,7 @@ span {
     line-height: 1.5;
     margin: auto;
     text-align: center;
+    padding: 10px;
   }
   .travel-container .travel-item .travel-item-page .travel-title {
     margin-right: 10px;
@@ -350,7 +389,6 @@ span {
   }
   .travel-container .travel-item .travel-item-page .my-favorite {
     display: block;
-    margin-right: 0;
   }
   .travel-container .travel-item .travel-item-page button {
     width: 100px;
@@ -364,12 +402,22 @@ span {
   .travel-container .travel-item .travel-item-page button:active {
     transform: translateY(3px);
   }
+  .travel-container .travel-item .addfavorite {
+    margin: 0 10px;
+    cursor: pointer;
+  }
   .select-all {
     width: 100%;
     max-width: 1200px;
     margin: auto;
     margin: 30px 0;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .select-all input[type=checkbox] {
+    width: 30px;
+    height: 30px;
   }
   .select-all button {
     width: 150px;
@@ -386,6 +434,10 @@ span {
   .turn-page {
     display: flex;
     justify-content: center;
+  }
+  .turn-page button {
+    display: flex;
+    align-items: center;
   }
   .turn-page .chose-page {
     font-size: 20px;
@@ -444,8 +496,20 @@ span {
   font-size: 0;
 }
 
+.myFavourite-list .map-container {
+  text-align: center;
+  margin-bottom: 30px;
+}
 .myFavourite-list .map-container #map {
   height: 50vh;
+}
+.myFavourite-list .map-container .weather-report {
+  margin-top: 20px;
+}
+.myFavourite-list .map-container .weather-report span {
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0 5px;
 }
 .myFavourite-list .favourite-head {
   text-align: center;
@@ -456,6 +520,11 @@ span {
   width: 100%;
   max-width: 1200px;
   margin: auto;
+}
+.myFavourite-list .favourite-container .empty-data {
+  text-align: center;
+  margin-top: 20px;
+  font-weight: 800;
 }
 .myFavourite-list .favourite-container .favourite-item {
   display: flex;
@@ -516,8 +585,9 @@ span {
   margin: auto;
   margin-top: 40px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
+  margin-bottom: 20px;
 }
 .myFavourite-list .delete-all span {
   font-size: 25px;
@@ -581,11 +651,11 @@ span {
 @media screen and (min-width: 1024px) {
   .myFavourite-list {
     display: flex;
-    margin-top: 150px;
-    align-items: center;
+    margin-top: 100px;
   }
   .myFavourite-list .map-container {
     width: 40%;
+    height: 80vh;
   }
   .myFavourite-list .map-container #map {
     width: 60vh;
@@ -597,6 +667,11 @@ span {
     max-width: 1200px;
     margin: auto;
     width: 50%;
+  }
+  .myFavourite-list .favourite-container .empty-data {
+    text-align: center;
+    font-weight: 800;
+    margin-bottom: 200px;
   }
   .myFavourite-list .favourite-container .favourite-head {
     text-align: center;
@@ -662,7 +737,7 @@ span {
     margin: auto;
     margin: 30px 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
   }
   .myFavourite-list .delete-all button {

@@ -1,8 +1,19 @@
 .myFavourite-list{
 
     .map-container{
+        text-align: center;
+        margin-bottom: 30px;
         #map{
             height: 50vh;
+          
+        }
+        .weather-report{
+            margin-top: 20px;
+            span{
+                font-size: 20px;
+                font-weight: 800;
+                margin: 0 5px;
+            }
         }
     }
     .favourite-head{
@@ -12,12 +23,17 @@
     }
     .favourite-container{
         @include container();
+        .empty-data{
+            text-align: center;
+            margin-top: 20px;
+            font-weight: 800;
+        }
 
         .favourite-item{
             display: flex;
             align-items: center;
             margin: 0 auto;
-           padding: 10px 0;
+            padding: 10px 0;
             input[type="checkbox"]{
                 width: 20px;
                 height: 20px;
@@ -70,8 +86,9 @@
         @include container();
         margin-top: 40px;
         display:flex;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
+        margin-bottom: 20px;
         span{
             font-size: 25px;
             font-weight: 800
@@ -120,10 +137,10 @@
 @media screen and (min-width:1024px) {
     .myFavourite-list{
         display: flex;
-        margin-top: 150px;
-        align-items: center;
+        margin-top: 100px;
         .map-container{
             width: 40%;
+            height: 80vh;
          
             #map{
                 width: 60vh;
@@ -135,6 +152,11 @@
         .favourite-container{
             @include container();
             width: 50%;
+            .empty-data{
+                text-align: center;
+                font-weight: 800;
+                margin-bottom: 200px;
+            }
             .favourite-head{
                 text-align: center;
                 font-weight: 800;
@@ -145,7 +167,7 @@
                 display: flex;
                 align-items: center;
                 margin: 0 auto;
-               padding: 10px 10px;
+                padding: 10px 10px;
                 input[type="checkbox"]{
                     width: 20px;
                     height: 20px;
@@ -199,7 +221,7 @@
             @include container();
             margin: 30px 0;
             display:flex;
-            justify-content: space-between;
+            justify-content: space-around;
             align-items: center;
             
             button{

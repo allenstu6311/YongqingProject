@@ -1,5 +1,4 @@
 .travel-place {
-    margin: 20px 0;
     border-bottom: 1px solid rgb(222, 222, 222);
     padding: 20px 20px;
     display: flex;
@@ -19,12 +18,12 @@
             height: 4px;
             margin: 7px 0;
             background-color: red;
-            z-index: 10;
+            z-index: 2500;
         }
     }
 
     .chose-list {
-        width: 30vw;
+        width: 300px;
         height: 100vh;
         position: fixed;
         top: 0;
@@ -33,7 +32,8 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        z-index: 5;
+        z-index: 2000;
+        text-align: center;
 
         a {
             @include url();
@@ -100,7 +100,7 @@
             line-height: 1.5;
             margin: auto;
             text-align: left;
-
+     
             .travel-title {
                 width: 130px;
                 background-color: red;
@@ -129,12 +129,13 @@
 
             .my-favorite {
                 display: flex;
+                
             }
 
         }
-
         .addfavorite {
             @include button(130px, 14px);
+           
         }
     }
 }
@@ -142,7 +143,19 @@
 .select-all {
     @include container();
     margin: 30px 0;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+    }
+
+    span {
+        font-size: 25px;
+        font-weight: 800
+    }
 
     button {
         @include button();
@@ -153,12 +166,19 @@
 .turn-page {
     display: flex;
     justify-content: center;
+    align-items: center;
+
+    button {
+        display: flex;
+        align-items: center;
+        background-color: transparent;
+        border: none;
+    }
 
     .chose-page {
         font-size: 20px;
         margin: 5px 10px;
     }
-
 }
 
 // ====================================1024
@@ -170,7 +190,27 @@
         h2 {
             font-weight: 800
         }
+        .chose-list {
+            width: 500px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            right: 0px;
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 2000;
+            text-align: center;
+    
+            a {
+                @include url();
+                margin: 10px 0;
+                color: white;
+            }
+        }
     }
+   
 
     .travel-container {
         @include container();
@@ -199,6 +239,7 @@
                 line-height: 1.5;
                 margin: auto;
                 text-align: center;
+                padding: 10px;
 
                 .travel-title {
                     margin-right: 10px;
@@ -231,12 +272,17 @@
 
                 .my-favorite {
                     display: block;
-                    margin-right: 0;
+                   
                 }
 
                 button {
                     @include button(100px, 14px);
+                   
                 }
+            }
+            .addfavorite{
+                margin: 0 10px;
+                cursor: pointer;
             }
         }
     }
@@ -244,7 +290,14 @@
     .select-all {
         @include container();
         margin: 30px 0;
-        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        input[type="checkbox"] {
+            width: 30px;
+            height: 30px;
+        }
 
         button {
             @include button();
@@ -255,6 +308,11 @@
     .turn-page {
         display: flex;
         justify-content: center;
+
+        button {
+            display: flex;
+            align-items: center;
+        }
 
         .chose-page {
             font-size: 20px;
