@@ -221,8 +221,10 @@ Vue.createApp({
         travelSearch: {
             handler(newVal) {
                 if (newVal == "") {
+                    this.travelData = this.travelInfo.slice(this.idNumMin, this.idNumMax)
                 }
-                this.travelData = this.travelInfo.slice(this.idNumMin, this.idNumMax)
+                
+               
             }
         },
         dashed:{
@@ -230,9 +232,6 @@ Vue.createApp({
                 console.log(newVal)
             }
         },
-        totalFavitore:{
-
-        }
     },
     created() {
         this.getTravelinformation()
