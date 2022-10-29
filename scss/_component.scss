@@ -1,3 +1,11 @@
+$btnColor:#1d61d5;
+$baseWhite:#F9F9F9;
+$titleColor:red;
+$slideChoseColor:rgb(250, 183, 58);
+
+body{
+    background-color: $baseWhite;
+}
 
 $fontSize:64px;
 
@@ -51,12 +59,20 @@ $fontColor:(
 }
 @mixin button($width:150px, $size:20px) {
     width: $width;
-    padding: 5px;
+    padding:10px 0px;
+    padding-left: 1px;
+    padding-right: 6px;
     font-weight: 800;
     font-size: $size;
     border-radius: 20px;
-    background-color: blue;
+    background-color: $btnColor;
     color: white;
+    border: none;
+    cursor: pointer;
+
+    &:hover{
+        transform: translateY(-5px);
+    }
 
     &:active{
         transform: translateY(3px);

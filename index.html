@@ -13,23 +13,34 @@
 <body>
     <div id="app">
         <div class="travel-place">
-            <h2>台南旅遊地點查詢</h2>
+            <div class="travel-logo">
+                <h2>台南旅遊</h2>
+                <div class="logo-pic">
+                    <img src="https://admin.twtainan.net/Content/favicons/mstile-310x310.png" alt="">
+                </div>
+              
+            </div>
             <div class="chose-page" @click="showList=!showList">
                 <div class="chose-control" :class="{turnAngle_1:showList}"></div>
                 <div class="chose-control" :class="{turnAngle_2:showList}"></div>
                 <transition name="called">
                     <nav class="chose-list" v-show="showList">
-                        <a href="/01.html">旅遊地點查詢</a>
-                        <a href="/02.html">我的最愛</a>
+                        <div class="close-list" v-if="showList">❌</div>
+                        <a href="/index.html">旅遊地點查詢</a>
+                        <a href="/favorite.html">我的最愛</a>
                     </nav>
                 </transition>
             </div>
         </div>
         <div class="travel-container">
+            <div class="travel-search">
+                <h2>旅遊地點查詢🔍</h2>
+            </div>
             <div class="travel-filter">
                 <div class="travel-keyword-search">
                     <input type="text" placeholder="請輸入關鍵字" v-model="travelSearch"
-                    size="30">
+                    size="30"
+                    @keyup.enter="keyWordSearch">
                     <button @click="keyWordSearch"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
           
@@ -54,11 +65,14 @@
                         <div class="travel-item-address"><p>{{item.address}}</p></div>
                 </div>
             </div>
-            <button class="addfavorite"  @click="addFavorite(item.id,item.lat,item.long)">加到我的最愛</button>
+            <button class="addfavorite"  @click="addFavorite(item.id,item.lat,item.long)">💓加到最愛</button>
+        </div>
+        <div class="travel-search-empty" v-if="travelData && travelData.length==0">
+            <h3>查無此資訊</h3>
         </div>
         <div class="select-all">
             <span><input type="checkbox" @click="checkAll" v-model="totalFavitore">全選</span>
-            <button @click="addTotal">全部加入最愛</button>
+            <button @click="addTotal">💕全部加入最愛</button>
         </div>
         <div class="turn-page" v-if="extraPage && extraPage.length>1">
             <button @click="prevPage"><</button>

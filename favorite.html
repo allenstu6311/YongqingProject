@@ -14,14 +14,21 @@
 <body>
     <div id="app">
         <div class="travel-place">
-            <h2>我的最愛</h2>
+            <div class="travel-logo">
+                <h2>台南旅遊</h2>
+                <div class="logo-pic">
+                    <img src="https://admin.twtainan.net/Content/favicons/mstile-310x310.png" alt="">
+                </div>
+              
+            </div>
             <div class="chose-page" @click="showList=!showList">
                 <div class="chose-control" :class="{turnAngle_1:showList}"></div>
                 <div class="chose-control" :class="{turnAngle_2:showList}"></div>
                 <transition name="called">
                     <nav class="chose-list" v-show="showList">
-                        <a href="/01.html">旅遊地點查詢</a>
-                        <a href="/02.html">我的最愛</a>
+                        <div class="close-list" v-if="showList">❌</div>
+                        <a href="/index.html">旅遊地點查詢</a>
+                        <a href="/favorite.html">我的最愛</a>
                     </nav>
                 </transition>
             </div>
@@ -29,7 +36,7 @@
         <div class="myFavourite-list">
             <div class="map-container">
                 <div id="map"></div>
-                <div class="weather-report" v-if="targetArea!=''">
+                <div class="weather-report" v-if=" weatherData&&weatherData.length>1">
                     <span>地區:{{targetArea.locationName}}</span>
                     <span>降雨機率:{{rain}}%
                         <small v-if="rain>40">☔</small>
@@ -39,15 +46,17 @@
                         <small v-if="weather=='陰天'">🌨</small>
                         <small v-if="weather=='晴'">🌞</small>
                         <small v-if="weather=='多雲'">☁</small>
-
                     </span>
                     <span>溫度:{{temperature}}度</span>
                 </div>
             </div>
           
             <div class="favourite-container">
+                <div class="favourite-container-title">
+                    <h2>我的最愛💘</h2>
+                </div>
                 <div class="empty-data" v-if="!favourite.length">
-                    <h2>目前沒有最愛</h2>
+                    <h3>目前沒有最愛</h3>
                 </div>
                 <div class="favourite-item" v-for="(item,index) in favourite" :class="{bgColor:index%2===0}"
                 @click="removeMap();updateMap(item.id);getWeather(item.district)">
@@ -71,7 +80,7 @@
                     </div>
                     <div class="favourite-item-btn">
                         <button class="edit" @click="editTarget(item)">編輯</button><br>
-                        <button class="removefavorite" @click="deleteFavorite(item.id)">移出最愛</button>
+                        <button class="removefavorite" @click="deleteFavorite(item.id)">💔移出最愛</button>
                     </div>
 
                 </div>
@@ -80,15 +89,14 @@
                     v-model="removeCheck"    
                         >全選</span>
                     <button @click="removeTotal"
-                    >刪除全選</button>
+                    >💞刪除全部最愛</button>
                 </div>
-                <div class="turn-page">
+                <div class="turn-page" v-if="totalPages">
                     <button @click="prevPage"><</button>
                     <div class="chose-page" v-for="i  in  totalPages" @click="chosePage(i)" 
                     :class="{pageColor:currentPage==i}" 
                    
                     >{{i}}</div>
-                    <span v-if="!totalPages">0</span>
                     <button @click="nextPage">></button>
                 </div>
             </div>

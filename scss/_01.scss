@@ -1,58 +1,92 @@
 .travel-place {
-    border-bottom: 1px solid rgb(222, 222, 222);
-    padding: 20px 20px;
+    padding: 10px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    h2 {
-        font-weight: 800;
-        font-size: 25px
+    background-color: white;
+    box-shadow: 0px 0px 10px rgb(167, 167, 167);
+    .travel-logo{
+        display: flex;
+        align-items: center;
+        .logo-pic{
+            width: 60px;
+            height: 60px;
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+       
     }
 
     .chose-page {
-
+        position: relative;
+        .close-list{
+            font-size: 25px;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 2500;
+            cursor: pointer;
+        }
         .chose-control {
             position: relative;
             width: 30px;
             height: 4px;
-            margin: 7px 0;
-            background-color: red;
-            z-index: 2500;
+            margin: 9px 20px;
+            background-color: $titleColor;
         }
     }
 
+    h2 {
+        font-weight: 800;
+        font-size: 25px;
+    }
     .chose-list {
-        width: 300px;
+        width: 100%;
         height: 100vh;
         position: fixed;
         top: 0;
         right: 0px;
-        background-color: black;
+        background-color: $slideChoseColor;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         z-index: 2000;
         text-align: center;
+        padding-top: 100px;
+     
+            a {
+                @include url();
+                margin: 10px 0;
+                color: white;
+                border-bottom: 2px solid white;
+                padding-bottom: 10px;
 
-        a {
-            @include url();
-            margin: 10px 0;
-            color: white;
-        }
+                &:hover{
+                    color: red
+                }
+            }
     }
 }
 
 .travel-container {
     @include container();
-
+    padding-top: 50px;
+    .travel-search{
+        text-align: center;
+        margin-bottom: 50px;
+        h2{
+            font-weight: 800;
+            margin: 20px 0
+        }
+    }
     .travel-filter {
         @include container();
         margin: 20px 0;
         display: flex;
-        align-items: flex-end;
+        align-items:center;
         flex-direction: column;
-
         .travel-keyword-search {
             display: flex;
             justify-content: center;
@@ -68,7 +102,7 @@
                 padding: 10px;
                 border: none;
                 font-size: 20px;
-                background-color: red;
+                background-color: $titleColor;
                 color: white;
                 box-shadow: 0px 0px 10px rgb(210, 210, 210);
             }
@@ -91,7 +125,7 @@
         input[type="checkbox"] {
             width: 20px;
             height: 20px;
-            margin: 0 3px;
+            margin: 0 8px;
         }
 
         .travel-item-page {
@@ -100,10 +134,10 @@
             line-height: 1.5;
             margin: auto;
             text-align: left;
-     
+
             .travel-title {
                 width: 130px;
-                background-color: red;
+                background-color: $titleColor;
                 padding: 0 5px;
                 text-align: center;
                 border-radius: 10px;
@@ -129,13 +163,21 @@
 
             .my-favorite {
                 display: flex;
-                
+
             }
 
         }
         .addfavorite {
             @include button(130px, 14px);
-           
+
+        }
+    }
+    .travel-search-empty{
+        text-align: center;
+        margin: 50px 0;
+        h3{
+            font-weight: 800;
+            color: gray;
         }
     }
 }
@@ -158,74 +200,92 @@
     }
 
     button {
-        @include button();
+        @include button(200px);
+        border-radius: 40px;
     }
-
 }
-
 .turn-page {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 50px 0;
+    .chose-page {
+
+        font-size: 20px;
+        margin: 5px 10px;
+        cursor: pointer;
+
+        .chose-control {
+            position: relative;
+            width: 30px;
+            height: 4px;
+            margin: 7px 0;
+            background-color: $titleColor;
+            z-index: 2500;
+        }
+    }
 
     button {
         display: flex;
         align-items: center;
         background-color: transparent;
         border: none;
+        cursor: pointer;
     }
 
-    .chose-page {
-        font-size: 20px;
-        margin: 5px 10px;
-    }
+
 }
 
 // ====================================1024
 @media screen and (min-width:1024px) {
     .travel-place {
-        margin: 20px 0;
         text-align: center;
 
         h2 {
             font-weight: 800
         }
+
         .chose-list {
-            width: 500px;
+            width: 300px;
             height: 100vh;
             position: fixed;
             top: 0;
             right: 0px;
-            background-color: black;
+            background-color: $slideChoseColor;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             z-index: 2000;
             text-align: center;
-    
-            a {
-                @include url();
-                margin: 10px 0;
-                color: white;
-            }
+            padding: 0 10px;
+            padding-top: 100px;
+         
+                a {
+                    @include url();
+                    margin: 10px 0;
+                    color: white;
+                    border-bottom: 2px solid white;
+                    padding-bottom: 10px
+                   
+                }
         }
     }
-   
 
     .travel-container {
         @include container();
-
+        padding-top: 70px;
         .travel-filter {
             @include container();
             margin: 20px 0;
             text-align: center;
+            display: flex;
+            align-items: flex-end;
         }
 
         .travel-item {
             display: flex;
             margin: 0 auto;
             padding: 10px 0;
-
             input[type="checkbox"] {
                 width: 20px;
                 height: 20px;
@@ -244,7 +304,7 @@
                 .travel-title {
                     margin-right: 10px;
                     width: 130px;
-                    background-color: red;
+                    background-color: $titleColor;
                     padding: 0 5px;
                     text-align: center;
                     border-radius: 10px;
@@ -272,19 +332,21 @@
 
                 .my-favorite {
                     display: block;
-                   
+
                 }
 
                 button {
                     @include button(100px, 14px);
-                   
+
                 }
             }
-            .addfavorite{
+
+            .addfavorite {
                 margin: 0 10px;
                 cursor: pointer;
             }
         }
+     
     }
 
     .select-all {
@@ -294,15 +356,15 @@
         align-items: center;
         justify-content: space-between;
 
-        input[type="checkbox"] {
-            width: 30px;
-            height: 30px;
+        span{
+            width: 300px;
+            display: flex;
+            align-items: center;
+            input[type="checkbox"] {
+                width: 30px;
+                height: 30px;
+            }
         }
-
-        button {
-            @include button();
-        }
-
     }
 
     .turn-page {
@@ -323,7 +385,7 @@
 }
 
 .pageColor {
-    color: red;
+    color: $titleColor;
 }
 
 .bgColor {
@@ -348,8 +410,7 @@
 }
 
 // ================================選單動畫
-.called-enter-active,
-.called-leave-active {
+.called-enter-active {
     font-size: 0;
     transition: .5s;
 
@@ -360,13 +421,14 @@
     height: 0 !important;
     border-radius: 50%;
     font-size: 0;
+
 }
 
 .called-leave-from {
-
-    // width: 300vw;
-    // height: 100vh;
-
+    width: 0 !important;
+    height: 0 !important;
+    font-size: 0;
+  
 }
 
 .called-enter-to {
@@ -381,5 +443,4 @@
     height: 0 !important;
     border-radius: 50%;
     font-size: 0;
-
 }

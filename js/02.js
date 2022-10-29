@@ -121,11 +121,11 @@ Vue.createApp({
         deleteFavorite(id) {
             let index = this.favourite.findIndex(item => item.id === id)
             this.favourite.splice(index, 1)
-
+            
             this.setLocalStorage()
+            location.reload()
         },
         removeTotal() {
-      
             for (let i = this.favourite.length - 1; i >= 0; i--) {
                 a = this.favourite[i];
                 for (let j = this.removeFavorite.length - 1; j >= 0; j--) {
@@ -133,12 +133,12 @@ Vue.createApp({
                     if (a == b) {
                         this.favourite.splice(i, 1)
                         this.removeFavorite.splice(j, 1)
-
                         break;
                     }
                 }
             }
             this.setLocalStorage()
+            location.reload()
         },
         checkAll(){
             if(this.removeCheck){
@@ -184,7 +184,6 @@ Vue.createApp({
       
 
     },
- 
     mounted() {
         this.initMap()
     },

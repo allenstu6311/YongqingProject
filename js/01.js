@@ -13,12 +13,13 @@ Vue.createApp({
             extraPage: [],
             pageShow: 8,
             showList: false,
-            totalPages: 55,
+            totalPages: 0,
             collect: [],
             judge: 0,
             dashed_1: 0,
             dashed_2: 0,
             totalFavitore: '',
+            pageShowCount: 7
         }
     },
     methods: {
@@ -28,9 +29,9 @@ Vue.createApp({
                 .then((res) => {
                     this.travelData = res.data
                     this.travelInfo = res.data
-
+                    this.totalPages = Math.ceil(this.travelData.length / 10)
                     this.travelData = this.travelData.slice(this.idNumMin, this.idNumMax)
-
+                    this.updatePage()
                 })
         },
         getAreaName() {
@@ -41,21 +42,15 @@ Vue.createApp({
         },
 
         chosePage(i) {
+            this.currentPage = i
+            this.idNumMax = i * 10
+            this.idNumMin = this.idNumMax - 10
             if (this.judge == 0) {
-                this.currentPage = i
-                this.idNumMax = i * 10
-                this.idNumMin = this.idNumMax - 10
                 this.getTravelinformation()
-                this.updatePage()
             } else if (this.judge == 1) {
-                this.currentPage = i
-                this.idNumMax = i * 10
-                this.idNumMin = this.idNumMax - 10
+
                 this.filterArea()
             } else if (this.judge == 2) {
-                this.currentPage = i
-                this.idNumMax = i * 10
-                this.idNumMin = this.idNumMax - 10
                 this.keyWordSearch()
             }
 
@@ -84,52 +79,46 @@ Vue.createApp({
 
         },
         prevPage() {
+            if (this.currentPage > 1) {
+                this.idNumMin = this.currentPage * 10
+                this.idNumMax = 10 + this.currentPage * 10
+                this.currentPage -= 1
+            }
+
             if (this.judge == 0) {
-                if (this.currentPage > 0) {
-                    this.currentPage -= 1
-                    this.idNumMin = this.currentPage * 10
-                    this.idNumMax = 10 + this.currentPage * 10
+                if (this.currentPage > 1) {
+
                     this.getTravelinformation()
-                    this.updatePage()
                 }
             } else if (this.judge == 1) {
-                if (this.currentPage > 0) {
-                    this.currentPage -= 1
-                    this.idNumMin = this.currentPage * 10
-                    this.idNumMax = 10 + this.currentPage * 10
+                if (this.currentPage > 1) {
                     this.filterArea()
                 }
             } else if (this.judge == 2) {
-                if (this.currentPage > 0) {
-                    this.currentPage -= 1
-                    this.idNumMin = this.currentPage * 10
-                    this.idNumMax = 10 + this.currentPage * 10
+                if (this.currentPage > 1) {
                     this.keyWordSearch()
                 }
             }
 
         },
         nextPage() {
+         
+            if (this.currentPage <= this.travelInfo.length) {
+                this.currentPage += 1
+                this.idNumMin = this.currentPage * 10
+                this.idNumMax = 10 + this.currentPage * 10
+          
+            }
             if (this.judge == 0) {
-                if (this.currentPage < 55) {
-                    this.currentPage += 1
-                    this.idNumMin = this.currentPage * 10
-                    this.idNumMax = 10 + this.currentPage * 10
+                if (this.currentPage <= this.travelInfo.length) {
                     this.getTravelinformation()
-                    this.updatePage()
                 }
             } else if (this.judge == 1) {
-                if (this.currentPage < this.extraPage.length) {
-                    this.currentPage += 1
-                    this.idNumMin = this.currentPage * 10
-                    this.idNumMax = 10 + this.currentPage * 10
+                if (this.currentPage <= this.travelInfo.length) {
                     this.filterArea()
                 }
             } else if (this.judge == 2) {
-                if (this.currentPage < this.extraPage.length) {
-                    this.currentPage += 1
-                    this.idNumMin = this.currentPage * 10
-                    this.idNumMax = 10 + this.currentPage * 10
+                if (this.currentPage <= this.travelInfo.length) {
                     this.keyWordSearch()
                 }
             }
@@ -179,10 +168,12 @@ Vue.createApp({
 
             } else {
                 this.sameNumber = this.collect.filter(v => this.myFavorite.find(u => v.id === u.id))
-
+                let str = ''
                 for (let i = 0; i < this.sameNumber.length; i++) {
-                    alert(`${this.sameNumber[i].name}已加入`)
+                    str += `${this.sameNumber[i].name}  ,`
                 }
+                //alert(`${this.sameNumber[i].name}已加入`)
+                alert(str + '已加入')
 
             }
         },
@@ -212,23 +203,29 @@ Vue.createApp({
             }
         },
         filterArea() {
-            this.judge = 1
-            this.travelData = this.travelInfo.filter(item => item.district === this.travelArea)
-           
-            this.extraPage = []
-           
-            for (let i = 1; i < Math.ceil(this.travelData.length / 10)+1; i++) {
-                this.extraPage.push(i)
-            }
-          
-            this.travelData = this.travelData.slice(this.idNumMin, this.idNumMax)
-
-             if(this.travelData.length==0){
-                    this.idNumMin=0
-                    this.idNumMax=10
-                    this.currentPage=1
+            if(this.travelArea!='1'){
+                this.judge = 1
+                this.travelData = this.travelInfo.filter(item => item.district === this.travelArea)
+    
+                this.extraPage = []
+    
+                for (let i = 1; i < Math.ceil(this.travelData.length / 10) + 1; i++) {
+                    this.extraPage.push(i)
+                }
+    
+                this.travelData = this.travelData.slice(this.idNumMin, this.idNumMax)
+                if (this.travelData.length == 0) {
+                    this.idNumMin = 0
+                    this.idNumMax = 10
+                    this.currentPage = 1
                     this.filterArea()
-                }   
+                }
+            }else{
+                this.judge = 0
+                this.travelData = this.travelInfo.slice(this.idNumMin, this.idNumMax)
+                this.getTravelinformation()
+            }
+         
         },
         checkAll() {
             if (this.totalFavitore) {
@@ -238,15 +235,6 @@ Vue.createApp({
                 this.myFavorite = this.travelData
             }
         }
-    },
-    computed: {
-        pageShowCount() {//?
-            if (this.totalPages <= this.pageShow) {
-                return this.totalPages - 1
-            } else {
-                return this.pageShow - 1
-            }
-        },
     },
     watch: {
         travelSearch: {
@@ -258,11 +246,11 @@ Vue.createApp({
         },
         travelArea: {
             handler(newVal) {
-                if (newVal == '1') {
-                    this.judge = 0
-                    this.travelData = this.travelInfo.slice(this.idNumMin, this.idNumMax)
-                    this.getTravelinformation()
-                    this.updatePage()
+                if (this.judge == 1) {
+                    this.currentPage = 1
+                    this.idNumMin = 0
+                    this.idNumMax = 10
+                    this.filterArea()
                 }
             }
         },
@@ -272,23 +260,10 @@ Vue.createApp({
                 this.dashed_1 = newVal.includes(1)
             }
         },
-        travelData:{
-            handler(newVal,oldVal){
-                console.log("new",newVal)
-                console.log('old',oldVal)
-            }
-        }
     },
     created() {
         this.getTravelinformation()
         this.getAreaName()
         this.getFavouriteInfo()
-        this.updatePage()
-
-    },
-    mounted() {
-
-        // this.totalPages = Math.ceil(this.travelInfo.length / 10)
-
     },
 }).mount("#app")

@@ -62,6 +62,10 @@ table {
   flex-wrap: nowrap;
 }
 
+body {
+  background-color: #F9F9F9;
+}
+
 h1 {
   font-size: 64px;
 }
@@ -131,36 +135,60 @@ span {
 }
 
 .travel-place {
-  border-bottom: 1px solid rgb(222, 222, 222);
-  padding: 20px 20px;
+  padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: white;
+  box-shadow: 0px 0px 10px rgb(167, 167, 167);
 }
-.travel-place h2 {
-  font-weight: 800;
+.travel-place .travel-logo {
+  display: flex;
+  align-items: center;
+}
+.travel-place .travel-logo .logo-pic {
+  width: 60px;
+  height: 60px;
+}
+.travel-place .travel-logo .logo-pic img {
+  width: 100%;
+  height: 100%;
+}
+.travel-place .chose-page {
+  position: relative;
+}
+.travel-place .chose-page .close-list {
   font-size: 25px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 2500;
+  cursor: pointer;
 }
 .travel-place .chose-page .chose-control {
   position: relative;
   width: 30px;
   height: 4px;
-  margin: 7px 0;
+  margin: 9px 20px;
   background-color: red;
-  z-index: 2500;
+}
+.travel-place h2 {
+  font-weight: 800;
+  font-size: 25px;
 }
 .travel-place .chose-list {
-  width: 300px;
+  width: 100%;
   height: 100vh;
   position: fixed;
   top: 0;
   right: 0px;
-  background-color: black;
+  background-color: rgb(250, 183, 58);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   z-index: 2000;
   text-align: center;
+  padding-top: 100px;
 }
 .travel-place .chose-list a {
   text-decoration: none;
@@ -169,12 +197,26 @@ span {
   font-weight: 800;
   margin: 10px 0;
   color: white;
+  border-bottom: 2px solid white;
+  padding-bottom: 10px;
+}
+.travel-place .chose-list a:hover {
+  color: red;
 }
 
 .travel-container {
   width: 100%;
   max-width: 1200px;
   margin: auto;
+  padding-top: 50px;
+}
+.travel-container .travel-search {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.travel-container .travel-search h2 {
+  font-weight: 800;
+  margin: 20px 0;
 }
 .travel-container .travel-filter {
   width: 100%;
@@ -182,7 +224,7 @@ span {
   margin: auto;
   margin: 20px 0;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   flex-direction: column;
 }
 .travel-container .travel-filter .travel-keyword-search {
@@ -217,7 +259,7 @@ span {
 .travel-container .travel-item input[type=checkbox] {
   width: 20px;
   height: 20px;
-  margin: 0 3px;
+  margin: 0 8px;
 }
 .travel-container .travel-item .travel-item-page {
   width: 100%;
@@ -248,15 +290,30 @@ span {
 }
 .travel-container .travel-item .addfavorite {
   width: 130px;
-  padding: 5px;
+  padding: 10px 0px;
+  padding-left: 1px;
+  padding-right: 6px;
   font-weight: 800;
   font-size: 14px;
   border-radius: 20px;
-  background-color: blue;
+  background-color: #1d61d5;
   color: white;
+  border: none;
+  cursor: pointer;
+}
+.travel-container .travel-item .addfavorite:hover {
+  transform: translateY(-5px);
 }
 .travel-container .travel-item .addfavorite:active {
   transform: translateY(3px);
+}
+.travel-container .travel-search-empty {
+  text-align: center;
+  margin: 50px 0;
+}
+.travel-container .travel-search-empty h3 {
+  font-weight: 800;
+  color: gray;
 }
 
 .select-all {
@@ -277,13 +334,21 @@ span {
   font-weight: 800;
 }
 .select-all button {
-  width: 150px;
-  padding: 5px;
+  width: 200px;
+  padding: 10px 0px;
+  padding-left: 1px;
+  padding-right: 6px;
   font-weight: 800;
   font-size: 20px;
   border-radius: 20px;
-  background-color: blue;
+  background-color: #1d61d5;
   color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 40px;
+}
+.select-all button:hover {
+  transform: translateY(-5px);
 }
 .select-all button:active {
   transform: translateY(3px);
@@ -293,38 +358,50 @@ span {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 50px 0;
+}
+.turn-page .chose-page {
+  font-size: 20px;
+  margin: 5px 10px;
+  cursor: pointer;
+}
+.turn-page .chose-page .chose-control {
+  position: relative;
+  width: 30px;
+  height: 4px;
+  margin: 7px 0;
+  background-color: red;
+  z-index: 2500;
 }
 .turn-page button {
   display: flex;
   align-items: center;
   background-color: transparent;
   border: none;
-}
-.turn-page .chose-page {
-  font-size: 20px;
-  margin: 5px 10px;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 1024px) {
   .travel-place {
-    margin: 20px 0;
     text-align: center;
   }
   .travel-place h2 {
     font-weight: 800;
   }
   .travel-place .chose-list {
-    width: 500px;
+    width: 300px;
     height: 100vh;
     position: fixed;
     top: 0;
     right: 0px;
-    background-color: black;
+    background-color: rgb(250, 183, 58);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     z-index: 2000;
     text-align: center;
+    padding: 0 10px;
+    padding-top: 100px;
   }
   .travel-place .chose-list a {
     text-decoration: none;
@@ -333,11 +410,14 @@ span {
     font-weight: 800;
     margin: 10px 0;
     color: white;
+    border-bottom: 2px solid white;
+    padding-bottom: 10px;
   }
   .travel-container {
     width: 100%;
     max-width: 1200px;
     margin: auto;
+    padding-top: 70px;
   }
   .travel-container .travel-filter {
     width: 100%;
@@ -345,6 +425,8 @@ span {
     margin: auto;
     margin: 20px 0;
     text-align: center;
+    display: flex;
+    align-items: flex-end;
   }
   .travel-container .travel-item {
     display: flex;
@@ -392,12 +474,19 @@ span {
   }
   .travel-container .travel-item .travel-item-page button {
     width: 100px;
-    padding: 5px;
+    padding: 10px 0px;
+    padding-left: 1px;
+    padding-right: 6px;
     font-weight: 800;
     font-size: 14px;
     border-radius: 20px;
-    background-color: blue;
+    background-color: #1d61d5;
     color: white;
+    border: none;
+    cursor: pointer;
+  }
+  .travel-container .travel-item .travel-item-page button:hover {
+    transform: translateY(-5px);
   }
   .travel-container .travel-item .travel-item-page button:active {
     transform: translateY(3px);
@@ -415,21 +504,14 @@ span {
     align-items: center;
     justify-content: space-between;
   }
-  .select-all input[type=checkbox] {
+  .select-all span {
+    width: 300px;
+    display: flex;
+    align-items: center;
+  }
+  .select-all span input[type=checkbox] {
     width: 30px;
     height: 30px;
-  }
-  .select-all button {
-    width: 150px;
-    padding: 5px;
-    font-weight: 800;
-    font-size: 20px;
-    border-radius: 20px;
-    background-color: blue;
-    color: white;
-  }
-  .select-all button:active {
-    transform: translateY(3px);
   }
   .turn-page {
     display: flex;
@@ -469,8 +551,7 @@ span {
   z-index: 10;
 }
 
-.called-enter-active,
-.called-leave-active {
+.called-enter-active {
   font-size: 0;
   transition: 0.5s;
 }
@@ -479,6 +560,12 @@ span {
   width: 0 !important;
   height: 0 !important;
   border-radius: 50%;
+  font-size: 0;
+}
+
+.called-leave-from {
+  width: 0 !important;
+  height: 0 !important;
   font-size: 0;
 }
 
@@ -525,6 +612,17 @@ span {
   text-align: center;
   margin-top: 20px;
   font-weight: 800;
+  margin: 100px 0;
+}
+.myFavourite-list .favourite-container .empty-data h3 {
+  color: gray;
+}
+.myFavourite-list .favourite-container .favourite-container-title {
+  text-align: center;
+  margin: 30px 0;
+}
+.myFavourite-list .favourite-container .favourite-container-title h2 {
+  font-weight: 800;
 }
 .myFavourite-list .favourite-container .favourite-item {
   display: flex;
@@ -565,13 +663,20 @@ span {
 }
 .myFavourite-list .favourite-container .favourite-item-btn button {
   width: 100px;
-  padding: 5px;
+  padding: 10px 0px;
+  padding-left: 1px;
+  padding-right: 6px;
   font-weight: 800;
   font-size: 14px;
   border-radius: 20px;
-  background-color: blue;
+  background-color: #1d61d5;
   color: white;
+  border: none;
+  cursor: pointer;
   margin: 10px 0;
+}
+.myFavourite-list .favourite-container .favourite-item-btn button:hover {
+  transform: translateY(-5px);
 }
 .myFavourite-list .favourite-container .favourite-item-btn button:active {
   transform: translateY(3px);
@@ -598,13 +703,21 @@ span {
   height: 20px;
 }
 .myFavourite-list .delete-all button {
-  width: 150px;
-  padding: 5px;
+  width: 200px;
+  padding: 10px 0px;
+  padding-left: 1px;
+  padding-right: 6px;
   font-weight: 800;
   font-size: 20px;
   border-radius: 20px;
-  background-color: blue;
+  background-color: #1d61d5;
   color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 50px;
+}
+.myFavourite-list .delete-all button:hover {
+  transform: translateY(-5px);
 }
 .myFavourite-list .delete-all button:active {
   transform: translateY(3px);
@@ -637,12 +750,19 @@ span {
 .edit-light-box .fix-list .fix-btn button {
   margin: 0 10px;
   width: 100px;
-  padding: 5px;
+  padding: 10px 0px;
+  padding-left: 1px;
+  padding-right: 6px;
   font-weight: 800;
   font-size: 16px;
   border-radius: 20px;
-  background-color: blue;
+  background-color: #1d61d5;
   color: white;
+  border: none;
+  cursor: pointer;
+}
+.edit-light-box .fix-list .fix-btn button:hover {
+  transform: translateY(-5px);
 }
 .edit-light-box .fix-list .fix-btn button:active {
   transform: translateY(3px);
@@ -667,11 +787,12 @@ span {
     max-width: 1200px;
     margin: auto;
     width: 50%;
+    height: 100vh;
   }
   .myFavourite-list .favourite-container .empty-data {
     text-align: center;
     font-weight: 800;
-    margin-bottom: 200px;
+    margin: 100px;
   }
   .myFavourite-list .favourite-container .favourite-head {
     text-align: center;
@@ -694,6 +815,7 @@ span {
     line-height: 1.5;
     margin: auto;
     text-align: left;
+    cursor: pointer;
   }
   .myFavourite-list .favourite-container .favourite-item .favourite-item-page .favourite-title {
     width: 130px;
@@ -717,13 +839,20 @@ span {
   }
   .myFavourite-list .favourite-container .favourite-item-btn button {
     width: 100px;
-    padding: 5px;
+    padding: 10px 0px;
+    padding-left: 1px;
+    padding-right: 6px;
     font-weight: 800;
     font-size: 14px;
     border-radius: 20px;
-    background-color: blue;
+    background-color: #1d61d5;
     color: white;
+    border: none;
+    cursor: pointer;
     margin: 10px 0;
+  }
+  .myFavourite-list .favourite-container .favourite-item-btn button:hover {
+    transform: translateY(-5px);
   }
   .myFavourite-list .favourite-container .favourite-item-btn button:active {
     transform: translateY(3px);
@@ -739,18 +868,6 @@ span {
     display: flex;
     justify-content: space-around;
     align-items: center;
-  }
-  .myFavourite-list .delete-all button {
-    width: 150px;
-    padding: 5px;
-    font-weight: 800;
-    font-size: 20px;
-    border-radius: 20px;
-    background-color: blue;
-    color: white;
-  }
-  .myFavourite-list .delete-all button:active {
-    transform: translateY(3px);
   }
   .myFavourite-list .delete-all span {
     font-size: 27px;
@@ -783,12 +900,19 @@ span {
   .edit-light-box .fix-list .fix-btn button {
     margin: 0 10px;
     width: 100px;
-    padding: 5px;
+    padding: 10px 0px;
+    padding-left: 1px;
+    padding-right: 6px;
     font-weight: 800;
     font-size: 16px;
     border-radius: 20px;
-    background-color: blue;
+    background-color: #1d61d5;
     color: white;
+    border: none;
+    cursor: pointer;
+  }
+  .edit-light-box .fix-list .fix-btn button:hover {
+    transform: translateY(-5px);
   }
   .edit-light-box .fix-list .fix-btn button:active {
     transform: translateY(3px);

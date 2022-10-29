@@ -27,6 +27,18 @@
             text-align: center;
             margin-top: 20px;
             font-weight: 800;
+            margin: 100px 0;
+            h3{
+                color: gray;
+            }
+           
+        }
+        .favourite-container-title{
+            text-align: center;
+            margin: 30px 0;
+            h2{
+                font-weight: 800;
+            }
         }
 
         .favourite-item{
@@ -89,6 +101,7 @@
         justify-content: space-around;
         align-items: center;
         margin-bottom: 20px;
+       
         span{
             font-size: 25px;
             font-weight: 800
@@ -99,7 +112,8 @@
         }
         
         button{
-            @include button();
+            @include button(200px);
+            border-radius: 50px;
         }
         
     }
@@ -152,10 +166,11 @@
         .favourite-container{
             @include container();
             width: 50%;
+            height: 100vh;
             .empty-data{
                 text-align: center;
                 font-weight: 800;
-                margin-bottom: 200px;
+                margin: 100px;
             }
             .favourite-head{
                 text-align: center;
@@ -178,6 +193,7 @@
                     line-height: 1.5;
                     margin: auto;
                     text-align: left;
+                    cursor: pointer;
                    
                     .favourite-title{
                         width: 130px;
@@ -224,9 +240,6 @@
             justify-content: space-around;
             align-items: center;
             
-            button{
-                @include button();
-            }
             span{
                 font-size: 27px;
                 margin: 0 10px;
