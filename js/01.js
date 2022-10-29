@@ -3,7 +3,7 @@ Vue.createApp({
         return {
             travelData: [],
             travelInfo: [],
-            travelArea: '',
+            travelArea: '1',
             travelSearch: '',
             AreaName: [],
             idNumMin: 0,
@@ -12,14 +12,13 @@ Vue.createApp({
             currentPage: 1,
             extraPage: [],
             pageShow: 8,
-            favorite: 123,
             showList: false,
             totalPages: 55,
             collect: [],
-            judge: false,
-            dashed_1:0,
-            dashed_2:0,
-            totalFavitore:'',
+            judge: 0,
+            dashed_1: 0,
+            dashed_2: 0,
+            totalFavitore: '',
         }
     },
     methods: {
@@ -42,17 +41,22 @@ Vue.createApp({
         },
 
         chosePage(i) {
-            if (!this.judge) {
+            if (this.judge == 0) {
                 this.currentPage = i
                 this.idNumMax = i * 10
                 this.idNumMin = this.idNumMax - 10
                 this.getTravelinformation()
                 this.updatePage()
-            } else {
+            } else if (this.judge == 1) {
                 this.currentPage = i
                 this.idNumMax = i * 10
                 this.idNumMin = this.idNumMax - 10
                 this.filterArea()
+            } else if (this.judge == 2) {
+                this.currentPage = i
+                this.idNumMax = i * 10
+                this.idNumMin = this.idNumMax - 10
+                this.keyWordSearch()
             }
 
         },
@@ -72,14 +76,15 @@ Vue.createApp({
                 if (index <= 54) {
                     this.extraPage.push(index)
                 }
-                this.dashed_2 = this.extraPage.includes(54)
+                this.dashed_2 = this.extraPage.length < 8
+
                 this.dashed_1 = this.extraPage.includes(1)
                 this.extraPage = this.extraPage.slice(0, 8)
             }
 
         },
         prevPage() {
-            if (!this.judge) {
+            if (this.judge == 0) {
                 if (this.currentPage > 0) {
                     this.currentPage -= 1
                     this.idNumMin = this.currentPage * 10
@@ -87,18 +92,25 @@ Vue.createApp({
                     this.getTravelinformation()
                     this.updatePage()
                 }
-            } else {
+            } else if (this.judge == 1) {
                 if (this.currentPage > 0) {
                     this.currentPage -= 1
                     this.idNumMin = this.currentPage * 10
                     this.idNumMax = 10 + this.currentPage * 10
                     this.filterArea()
                 }
+            } else if (this.judge == 2) {
+                if (this.currentPage > 0) {
+                    this.currentPage -= 1
+                    this.idNumMin = this.currentPage * 10
+                    this.idNumMax = 10 + this.currentPage * 10
+                    this.keyWordSearch()
+                }
             }
 
         },
         nextPage() {
-            if (!this.judge) {
+            if (this.judge == 0) {
                 if (this.currentPage < 55) {
                     this.currentPage += 1
                     this.idNumMin = this.currentPage * 10
@@ -106,12 +118,19 @@ Vue.createApp({
                     this.getTravelinformation()
                     this.updatePage()
                 }
-            } else {
+            } else if (this.judge == 1) {
                 if (this.currentPage < this.extraPage.length) {
                     this.currentPage += 1
                     this.idNumMin = this.currentPage * 10
                     this.idNumMax = 10 + this.currentPage * 10
                     this.filterArea()
+                }
+            } else if (this.judge == 2) {
+                if (this.currentPage < this.extraPage.length) {
+                    this.currentPage += 1
+                    this.idNumMin = this.currentPage * 10
+                    this.idNumMax = 10 + this.currentPage * 10
+                    this.keyWordSearch()
                 }
             }
 
@@ -168,8 +187,16 @@ Vue.createApp({
             }
         },
         keyWordSearch() {
+            this.judge = 2
             this.travelData = this.travelInfo.filter(item => item.name == this.travelSearch ||
                 item.district == this.travelSearch)
+
+            this.extraPage = []
+            for (let i = 1; i < Math.ceil(this.travelData.length / 10); i++) {
+                this.extraPage.push(i)
+            }
+            this.travelData = this.travelData.slice(this.idNumMin, this.idNumMax)
+
         },
         setLocalStorage() {
             localStorage.setItem("myFavorite", JSON.stringify(this.collect))
@@ -185,34 +212,38 @@ Vue.createApp({
             }
         },
         filterArea() {
-            this.judge = true
+            this.judge = 1
             this.travelData = this.travelInfo.filter(item => item.district === this.travelArea)
-
+           
             this.extraPage = []
-            for (let i = 1; i < Math.ceil(this.travelData.length / 10); i++) {
+           
+            for (let i = 1; i < Math.ceil(this.travelData.length / 10)+1; i++) {
                 this.extraPage.push(i)
             }
+          
             this.travelData = this.travelData.slice(this.idNumMin, this.idNumMax)
+
+             if(this.travelData.length==0){
+                    this.idNumMin=0
+                    this.idNumMax=10
+                    this.currentPage=1
+                    this.filterArea()
+                }   
         },
-        checkAll(){
-     
-            if(this.totalFavitore){
-                this.myFavorite=[]
-             
-            }else{
-                this.myFavorite =  this.travelData  
+        checkAll() {
+            if (this.totalFavitore) {
+                this.myFavorite = []
+
+            } else {
+                this.myFavorite = this.travelData
             }
         }
     },
     computed: {
-        travelDataLength() {
-            return Math.ceil(this.travelInfo.length / 10)
-        },
         pageShowCount() {//?
             if (this.totalPages <= this.pageShow) {
                 return this.totalPages - 1
             } else {
-
                 return this.pageShow - 1
             }
         },
@@ -223,15 +254,30 @@ Vue.createApp({
                 if (newVal == "") {
                     this.travelData = this.travelInfo.slice(this.idNumMin, this.idNumMax)
                 }
-                
-               
             }
         },
-        dashed:{
-            handler(newVal){
-                console.log(newVal)
+        travelArea: {
+            handler(newVal) {
+                if (newVal == '1') {
+                    this.judge = 0
+                    this.travelData = this.travelInfo.slice(this.idNumMin, this.idNumMax)
+                    this.getTravelinformation()
+                    this.updatePage()
+                }
             }
         },
+        extraPage: {
+            handler(newVal) {
+                this.dashed_2 = newVal.length < 8
+                this.dashed_1 = newVal.includes(1)
+            }
+        },
+        travelData:{
+            handler(newVal,oldVal){
+                console.log("new",newVal)
+                console.log('old',oldVal)
+            }
+        }
     },
     created() {
         this.getTravelinformation()
@@ -241,7 +287,7 @@ Vue.createApp({
 
     },
     mounted() {
-      
+
         // this.totalPages = Math.ceil(this.travelInfo.length / 10)
 
     },

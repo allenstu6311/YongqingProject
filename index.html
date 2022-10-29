@@ -35,10 +35,9 @@
           
                 <select name="" id="" v-model="travelArea"
                 @change="filterArea">
-                    <option value="">請選擇區域</option>
+                    <option value="1">請選擇區域</option>
                     <option v-for="item in AreaName"  :value="item.AreaName">{{item.AreaName}}</option>
                 </select>
-               
             </div>
          
             <div class="travel-item" v-for="(item,index) in travelData" :class="{bgColor:index%2===0}">
@@ -61,7 +60,7 @@
             <span><input type="checkbox" @click="checkAll" v-model="totalFavitore">全選</span>
             <button @click="addTotal">全部加入最愛</button>
         </div>
-        <div class="turn-page">
+        <div class="turn-page" v-if="extraPage && extraPage.length>1">
             <button @click="prevPage"><</button>
             <span v-if="!dashed_1">...</span>
             <div class="chose-page" v-for="i  in  extraPage" @click="chosePage(i)" 
