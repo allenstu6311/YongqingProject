@@ -19,7 +19,8 @@ Vue.createApp({
             dashed_1: 0,
             dashed_2: 0,
             totalFavitore: '',
-            pageShowCount: 7
+            pageShowCount: 7,
+            nothing:false
         }
     },
     methods: {
@@ -185,13 +186,15 @@ Vue.createApp({
                 this.extraPage.push(i)
             }
             this.travelData = this.travelData.slice(this.idNumMin, this.idNumMax)
+            if(this.travelData.length<1){
+               this.nothing = true
+            }
 
         },
         setLocalStorage() {
             localStorage.setItem("myFavorite", JSON.stringify(this.collect))
         },
         getFavouriteInfo() {
-
             let favouriteInfo = localStorage.getItem("myFavorite");
 
             if (!favouriteInfo) {

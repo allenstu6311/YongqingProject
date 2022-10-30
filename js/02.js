@@ -92,9 +92,14 @@ Vue.createApp({
         editFinish() {
 
             let index = this.favourite.findIndex(item => item.name === this.oldName)
-            let reg = new RegExp("^[\u4e00-\u9fa5]+$");
-            if(!reg.test(this.attractionName)){
+            let regChinese = new RegExp("^[\u4e00-\u9fa5]+$");
+            let regNumber = new RegExp("[\0-9\]");
+            if(!regChinese.test(this.attractionName)){
                 alert("不能輸入中文以外的其他字元")
+            }else if(regNumber.test(this.attractionDistrict)){
+                console.log(regNumber.test(this.attractionDistrict))
+                alert("不能輸入數字")
+            
             }else{
             this.favourite[index].name = this.attractionName
             this.showLightBox = false

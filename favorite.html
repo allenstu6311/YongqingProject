@@ -41,10 +41,10 @@
                     <span>降雨機率:{{rain}}%
                         <small v-if="rain>40">☔</small>
                     </span>
-                    <span>天氣狀況:{{weather }}
+                    <span>天氣狀況:{{weather}}
                         <small v-if="weather=='晴時多雲'">⛅</small>
                         <small v-if="weather=='晴'">🌞</small>
-                        <small v-if="weather=='多雲'">☁</small>
+                        <small v-if="weather=='陰'">☁</small>
                         <small v-if="weather=='短暫陣雨'">🌨</small>
                     </span>
                     <span>溫度:{{temperature}}度</span>
