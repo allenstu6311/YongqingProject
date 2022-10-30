@@ -178,8 +178,7 @@ Vue.createApp({
             }
         },
         keyWordSearch() {
-            this.judge = 2
-            
+            this.judge = 2         
             this.travelData = this.travelInfo.filter(v=>v.name.includes(this.travelSearch))
             this.extraPage = []
             for (let i = 1; i < Math.ceil(this.travelData.length / 10); i++) {

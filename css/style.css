@@ -585,6 +585,7 @@ span {
 
 .myFavourite-list .map-container {
   text-align: center;
+  margin-top: 100px;
   margin-bottom: 30px;
 }
 .myFavourite-list .map-container #map {
@@ -592,6 +593,8 @@ span {
 }
 .myFavourite-list .map-container .weather-report {
   margin-top: 20px;
+  line-height: 1.5;
+  padding: 0 10px;
 }
 .myFavourite-list .map-container .weather-report span {
   font-size: 20px;
