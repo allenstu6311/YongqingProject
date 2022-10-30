@@ -250,6 +250,7 @@ Vue.createApp({
             handler(newVal) {
                 if (newVal == "") {
                     this.travelData = this.travelInfo.slice(this.idNumMin, this.idNumMax)
+                    this.updatePage()
                 }
             }
         },

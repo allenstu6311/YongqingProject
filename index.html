@@ -67,10 +67,7 @@
             </div>
             <button class="addfavorite"  @click="addFavorite(item.id,item.lat,item.long)">💓加到最愛</button>
         </div>
-        <div class="travel-search-empty" v-if="travelData && travelData.length==0 &&!nothing">
-            <h3>Loading....</h3>
-        </div>
-        <div class="travel-search-empty" v-if="nothing">
+        <div class="travel-search-empty" v-if="travelData && travelData.length==0">
             <h3>查無資訊</h3>
         </div>
         <div class="select-all">
@@ -83,7 +80,7 @@
             <div class="chose-page" v-for="i  in  extraPage" @click="chosePage(i)" 
             :class="{pageColor:currentPage==i}" 
            
-            >{{i}}</div><span v-if="!dashed_2">...</span>
+            >{{i}}</div><span v-if="!dashed_2 && travelData.length<10">...</span>
             <button @click="nextPage">></button>
         </div>
     </div>
