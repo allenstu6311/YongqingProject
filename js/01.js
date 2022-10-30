@@ -25,7 +25,7 @@ Vue.createApp({
     methods: {
         getTravelinformation() {
             this.travelData = []
-            axios.get("./json/info.json")
+            axios.get("https://run.mocky.io/v3/ad30da46-0b0a-4320-9a56-742b802e3f35")
                 .then((res) => {
                     this.travelData = res.data
                     this.travelInfo = res.data
@@ -173,7 +173,7 @@ Vue.createApp({
                     str += `${this.sameNumber[i].name}  ,`
                 }
                 //alert(`${this.sameNumber[i].name}已加入`)
-                alert(str + '已加入')
+                alert(str + '已被加入')
 
             }
         },
