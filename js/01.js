@@ -111,15 +111,15 @@ Vue.createApp({
           
             }
             if (this.judge == 0) {
-                if (this.currentPage <= this.travelInfo.length) {
+                if (this.currentPage <= this.travelData.length) {
                     this.getTravelinformation()
                 }
             } else if (this.judge == 1) {
-                if (this.currentPage <= this.travelInfo.length) {
+                if (this.currentPage <= this.travelData.length) {
                     this.filterArea()
                 }
             } else if (this.judge == 2) {
-                if (this.currentPage <= this.travelInfo.length) {
+                if (this.currentPage <= this.travelData.length) {
                     this.keyWordSearch()
                 }
             }
@@ -210,10 +210,10 @@ Vue.createApp({
     
                 this.extraPage = []
     
-                for (let i = 1; i < Math.ceil(this.travelData.length / 10) + 1; i++) {
+                for (let i = 1; i < Math.ceil(this.travelData.length / 10) ; i++) {
                     this.extraPage.push(i)
                 }
-    
+          
                 this.travelData = this.travelData.slice(this.idNumMin, this.idNumMax)
                 if (this.travelData.length == 0) {
                     this.idNumMin = 0
