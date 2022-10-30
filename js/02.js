@@ -154,7 +154,7 @@ Vue.createApp({
             this. getFavouriteInfo()
         },
         prevPage() {
-            if (this.currentPage > 0) {
+            if (this.currentPage > 1) {
                 this.currentPage -= 1
                 this.showTarget_2 =this.currentPage*5
                 this.showTarget_1 =  this.showTarget_2-5
@@ -162,7 +162,8 @@ Vue.createApp({
             }
         },
         nextPage() {
-            if (this.currentPage < 55) {
+            if (this.currentPage < this.totalPages) {
+                console.log(this.totalPages)
                 this.currentPage += 1
                 this.showTarget_2 =this.currentPage*5
                 this.showTarget_1 =  this.showTarget_2-5
