@@ -25,8 +25,8 @@ Vue.createApp({
     },
     methods: {
         getTravelinformation() {
-            this.travelData = []
-            axios.get("https://run.mocky.io/v3/ad30da46-0b0a-4320-9a56-742b802e3f35")
+            this.travelData=[]
+            axios.get("../json/info.json")
                 .then((res) => {
                     this.travelData = res.data
                     this.travelInfo = res.data
@@ -80,23 +80,26 @@ Vue.createApp({
 
         },
         prevPage() {
-            if (this.currentPage > 1) {
-                this.idNumMin = this.currentPage * 10
-                this.idNumMax = 10 + this.currentPage * 10
-                this.currentPage -= 1
-            }
-
             if (this.judge == 0) {
                 if (this.currentPage > 1) {
-
+                    this.currentPage-=1
+                    this.idNumMax = this.currentPage * 10
+                    this.idNumMin =   this.idNumMax  - 10
                     this.getTravelinformation()
                 }
             } else if (this.judge == 1) {
+             
                 if (this.currentPage > 1) {
+                    this.currentPage-=1
+                    this.idNumMax = this.currentPage * 10
+                    this.idNumMin =   this.idNumMax  - 10
                     this.filterArea()
                 }
             } else if (this.judge == 2) {
                 if (this.currentPage > 1) {
+                       this.currentPage-=1
+                       this.idNumMax = this.currentPage * 10
+                       this.idNumMin =   this.idNumMax  - 10
                     this.keyWordSearch()
                 }
             }
@@ -104,25 +107,30 @@ Vue.createApp({
         },
         nextPage() {
          
-            if (this.currentPage <= this.travelInfo.length) {
-                this.currentPage += 1
-                this.idNumMin = this.currentPage * 10
-                this.idNumMax = 10 + this.currentPage * 10
-          
-            }
             if (this.judge == 0) {
-                if (this.currentPage <= this.travelData.length) {
+               
+                if (this.currentPage < this.travelData.length) {
+                    this.currentPage += 1
+                    this.idNumMax = this.currentPage * 10
+                    this.idNumMin =   this.idNumMax  - 10
                     this.getTravelinformation()
                 }
             } else if (this.judge == 1) {
-                if (this.currentPage <= this.travelData.length) {
+                if (this.currentPage <this.travelData.length) {
+                    this.currentPage += 1
+                    this.idNumMax = this.currentPage * 10
+                    this.idNumMin =   this.idNumMax  - 10
                     this.filterArea()
                 }
             } else if (this.judge == 2) {
-                if (this.currentPage <= this.travelData.length) {
+                if (this.currentPage < Math.ceil(this.travelData.length / 10)) {
+                    this.currentPage += 1
+                    this.idNumMax = this.currentPage * 10
+                    this.idNumMin =   this.idNumMax  - 10
                     this.keyWordSearch()
                 }
             }
+         
 
         },
         addFavorite(id) {
@@ -210,10 +218,10 @@ Vue.createApp({
     
                 this.extraPage = []
     
-                for (let i = 1; i < Math.ceil(this.travelData.length / 10) ; i++) {
+                for (let i = 1; i < Math.ceil(this.travelData.length / 10)+1 ; i++) {
                     this.extraPage.push(i)
                 }
-          
+        
                 this.travelData = this.travelData.slice(this.idNumMin, this.idNumMax)
                 if (this.travelData.length == 0) {
                     this.idNumMin = 0
