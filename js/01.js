@@ -19,7 +19,7 @@ Vue.createApp({
             dashed_1: 0,
             dashed_2: 0,
             totalFavitore: '',
-            pageShowCount: 7,
+            pageShowCount: 9,
             nothing:false
         }
     },
@@ -61,11 +61,11 @@ Vue.createApp({
             let end = start + this.pageShowCount
             if (this.currentPage > this.pageShowCount) {
                 start = this.currentPage - 3
-                end = start + 7
+                end = start + 8
             }
             if (this.totalPages > this.pageShowCount && this.currentPage >= this.totalPages - 1) {
                 end = this.totalPages,
-                    start = this.currentPage - 4
+                start = this.currentPage - 4
             }
             this.extraPage = []
             for (let index = start; index <= end; index++) {
@@ -73,9 +73,8 @@ Vue.createApp({
                     this.extraPage.push(index)
                 }
                 this.dashed_2 = this.extraPage.length < 8
-
                 this.dashed_1 = this.extraPage.includes(1)
-                this.extraPage = this.extraPage.slice(0, 8)
+       
             }
 
         },
@@ -266,7 +265,7 @@ Vue.createApp({
         },
         extraPage: {
             handler(newVal) {
-                this.dashed_2 = newVal.length < 8
+                this.dashed_2 = newVal.length < 9
                 this.dashed_1 = newVal.includes(1)
             }
         },

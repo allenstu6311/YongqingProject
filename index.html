@@ -80,7 +80,7 @@
             <div class="chose-page" v-for="i  in  extraPage" @click="chosePage(i)" 
             :class="{pageColor:currentPage==i}" 
            
-            >{{i}}</div><span v-if="!dashed_2 && travelData.length<10">...</span>
+            >{{i}}</div><span v-if="!dashed_2 && travelInfo.length>9">...</span>
             <button @click="nextPage">></button>
         </div>
     </div>
