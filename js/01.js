@@ -26,7 +26,7 @@ Vue.createApp({
     methods: {
         getTravelinformation() {
             this.travelData=[]
-            axios.get("../json/info.json")
+            axios.get("https://run.mocky.io/v3/ad30da46-0b0a-4320-9a56-742b802e3f35")
                 .then((res) => {
                     this.travelData = res.data
                     this.travelInfo = res.data
