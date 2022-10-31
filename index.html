@@ -67,7 +67,10 @@
             </div>
             <button class="addfavorite"  @click="addFavorite(item.id,item.lat,item.long)">💓加到最愛</button>
         </div>
-        <div class="travel-search-empty" v-if="travelData && travelData.length==0">
+        <div class="travel-search-empty" v-if="travelData && travelData.length==0 &&!nothing">
+            <h3>Loading....</h3>
+        </div>
+        <div class="travel-search-empty" v-if="nothing">
             <h3>查無資訊</h3>
         </div>
         <div class="select-all">
