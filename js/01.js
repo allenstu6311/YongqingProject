@@ -248,6 +248,7 @@ Vue.createApp({
         travelSearch: {
             handler(newVal) {
                 if (newVal == "") {
+                    this.nothing = false
                     this.judge=1
                     this.travelData = this.travelInfo.slice(this.idNumMin, this.idNumMax)
                     this.updatePage()
