@@ -25,6 +25,7 @@ Vue.createApp({
             weather:'',
             temperature:'',
             showList: false,
+            favouriteBox:[],
         }
     },
 
@@ -112,11 +113,12 @@ Vue.createApp({
             this.setLocalStorage()
         },
         setLocalStorage() {
-            localStorage.setItem("myFavorite", JSON.stringify(this.favourite))
+            localStorage.setItem("myFavorite", JSON.stringify(this.favouriteBox))
         },
         getFavouriteInfo() {
             let favouriteInfo = localStorage.getItem("myFavorite");
             this.favourite = JSON.parse(favouriteInfo)
+            this.favouriteBox = JSON.parse(favouriteInfo)
 
             this.totalPages = this.favourite? Math.ceil(this.favourite.length / 5):0
             this.favourite = this.favourite?this.favourite.slice(this.showTarget_1,this.showTarget_2):[]
@@ -124,26 +126,34 @@ Vue.createApp({
 
         },
         deleteFavorite(id) {
-            let index = this.favourite.findIndex(item => item.id === id)
-            this.favourite.splice(index, 1)
             
+            let index = this.favouriteBox.findIndex(item => item.id === id)
+            this.favouriteBox.splice(index, 1)
+          
             this.setLocalStorage()
-            location.reload()
+            this.getFavouriteInfo()
         },
         removeTotal() {
-            for (let i = this.favourite.length - 1; i >= 0; i--) {
-                a = this.favourite[i];
+            for (let i = this.favouriteBox.length - 1; i >= 0; i--) {
+           
+                a = this.favouriteBox[i];
+           
                 for (let j = this.removeFavorite.length - 1; j >= 0; j--) {
                     b = this.removeFavorite[j]
-                    if (a == b) {
-                        this.favourite.splice(i, 1)
+                   
+                    if (a.id == b.id) {
+                   
+                        console.log(i)
+                        this.favouriteBox.splice(i, 1)
                         this.removeFavorite.splice(j, 1)
+                        this.setLocalStorage()
+                        this.getFavouriteInfo()
                         break;
                     }
                 }
             }
-            this.setLocalStorage()
-            location.reload()
+          
+            // location.reload()
         },
         checkAll(){
             if(this.removeCheck){
