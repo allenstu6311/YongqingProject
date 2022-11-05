@@ -196,6 +196,12 @@ Vue.createApp({
             if(this.travelData.length<1){
                this.nothing = true
             }
+            if (this.travelData.length == 0) {
+                this.idNumMin = 0
+                this.idNumMax = 10
+                this.currentPage = 1
+                this. keyWordSearch()
+            }
 
         },
         setLocalStorage() {
@@ -271,6 +277,13 @@ Vue.createApp({
                 this.dashed_1 = newVal.includes(1)
             }
         },
+        travelData:{
+            handler(newVal){
+                if(newVal.length>1){
+                    this.nothing = false
+                }
+            }
+        }
     },
     created() {
         this.getTravelinformation()
